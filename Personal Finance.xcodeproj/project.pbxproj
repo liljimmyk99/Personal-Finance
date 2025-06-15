@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,12 @@
 		C75A04DB2C7C0B9A00739285 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C75A04DD2C7C0B9A00739285 /* Personal_Finance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Personal_Finance.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C7BA68AC2DE3C986001DE43A /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		C7BA68AD2DE3C994001DE43A /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		C7BA68B22DE3CEC7001DE43A /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C75A04CE2C7C0B9900739285 /* Frameworks */ = {
@@ -52,6 +58,9 @@
 		C75A04D32C7C0B9900739285 /* Personal Finance */ = {
 			isa = PBXGroup;
 			children = (
+				C7BA68B22DE3CEC7001DE43A /* Helpers */,
+				C7BA68AD2DE3C994001DE43A /* Views */,
+				C7BA68AC2DE3C986001DE43A /* Models */,
 				C75A04D42C7C0B9900739285 /* Personal_FinanceApp.swift */,
 				C75A04D62C7C0B9900739285 /* ContentView.swift */,
 				C75A04D82C7C0B9A00739285 /* Assets.xcassets */,
@@ -83,6 +92,11 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C7BA68AC2DE3C986001DE43A /* Models */,
+				C7BA68AD2DE3C994001DE43A /* Views */,
+				C7BA68B22DE3CEC7001DE43A /* Helpers */,
 			);
 			name = "Personal Finance";
 			productName = "Personal Finance";
@@ -200,7 +214,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -257,7 +271,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
