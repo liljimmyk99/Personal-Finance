@@ -16,5 +16,14 @@ struct Personal_FinanceApp: App {
             ContentView()
                 .environmentObject(appState)
         }
+        
+        WindowGroup(for: Transaction.self) { $transaction in
+            Text(transaction?.store ?? "No Store Entered")
+        }
+        
+        WindowGroup(id: "new-item") {
+            NewItemView()
+        }
+        
     }
 }

@@ -2,30 +2,38 @@
 //  CategoryView.swift
 //  Personal Finance
 //
-//  Created by Jimmy Kane on 6/15/25.
+//  Created by Jimmy Kane on 6/17/25.
 //
-
 import SwiftUI
 
 struct CategoryView: View {
+    @Environment(\.openWindow) private var openWindow
+    @EnvironmentObject var appState: AppState
     @State var transactions: [Transaction] = []
-    @State private var sortOrder: [KeyPathComparator<Transaction>] = [
-        .init(\.store, order: .forward),
-    ]
-
+    
     var body: some View {
-        Table(
-            transactions.sorted(using: sortOrder),
-            sortOrder: $sortOrder
-        ) {
-            TableColumn("Store", value: \.store)
-            TableColumn("Date") { transaction in
-                Text(transaction.date.formatted(.dateTime.year().month().day()))
+        ScrollView(.horizontal) {
+            HStack(alignment: .top, spacing: 100) {
+                ForEach(CategoryType.allCases, id: \.self) { category in
+                    VStack{
+                        Text(category.rawValue)
+                            .bold()
+                    
+                        transactionsForCategory(category)
+                    }
+                }
             }
-            TableColumn("Amount") { transaction in
-                Text(transaction.amount, format: .currency(code: "USD"))
+            .padding()
+        }
+    }
+    
+    @ViewBuilder
+    func transactionsForCategory(_ category: CategoryType) -> some View {
+        let filteredTransactions: [Transaction] = transactions.filter{ $0.category == category }
+        ScrollView{
+            ForEach(filteredTransactions) { transaction in
+                KanbanCard(store: transaction.store, amount: transaction.amount, date: transaction.date, onPress: {openWindow(value: transaction)})
             }
-            TableColumn("Category", value: \.category)
         }
     }
 }

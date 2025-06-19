@@ -44,7 +44,7 @@ struct MonthsView: View {
                 TableColumn("Amount") { transaction in
                     Text(transaction.amount, format: .currency(code: "USD"))
                 }
-                TableColumn("Category", value: \.category)
+                TableColumn("Category", value: \.category.rawValue)
             }
         }
         .onChange(of: selectedMonth) {
