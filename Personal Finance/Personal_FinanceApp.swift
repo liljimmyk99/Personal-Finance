@@ -18,11 +18,12 @@ struct Personal_FinanceApp: App {
         }
         
         WindowGroup(for: Transaction.self) { $transaction in
-            Text(transaction?.store ?? "No Store Entered")
+            EditTransactionView(transaction: transaction)
         }
         
         WindowGroup(id: "new-item") {
             NewItemView()
+                .frame(minWidth: 500, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity)
         }
         
     }

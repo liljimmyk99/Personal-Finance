@@ -10,16 +10,15 @@ import SwiftUI
 struct NewItemView: View {
     var body: some View {
         TabView{
-            NewTransactionView()
+            EditTransactionView()
                 .tabItem {
                     Text("Transaction")
                 }
-            Text("New Income")
+            NewIncomeView()
                 .tabItem {
                     Text("Income")
                 }
         }
-        .tabViewStyle(.grouped)
     }
 }
 

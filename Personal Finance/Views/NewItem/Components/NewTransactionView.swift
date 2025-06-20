@@ -6,11 +6,18 @@
 //
 import SwiftUI
 
-struct NewTransactionView: View {
-    @State var store: String = ""
-    @State var date: Date = Date()
-    @State var category: CategoryType = .other
-    @State var amount: Double = 0.0
+struct EditTransactionView: View {
+    @State private var store: String
+    @State private var date: Date
+    @State private var category: CategoryType
+    @State private var amount: Double
+    
+    init(transaction: Transaction? = nil) {
+        store = transaction?.store ?? ""
+        date = transaction?.date ?? Date()
+        amount = transaction?.amount ?? 0.0
+        category = transaction?.category ?? .other
+    }
     
     var body: some View {
         VStack {
@@ -25,6 +32,17 @@ struct NewTransactionView: View {
                 options: CategoryType.allCases,
                 label: "Category"
             ).padding(.bottom)
+            
+            PFButton(text: "Submit") {
+                let transaction = Transaction(
+                    date: date,
+                    store: store,
+                    amount: amount,
+                    category: category
+                )
+                
+                print("Created new Transaction: \(transaction)")
+            }
         }
         .padding()
         
@@ -32,5 +50,5 @@ struct NewTransactionView: View {
 }
 
 #Preview{
-    NewTransactionView()
+    EditTransactionView()
 }
