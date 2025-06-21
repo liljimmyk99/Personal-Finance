@@ -17,13 +17,15 @@ struct BasicButton: View {
         } label: {
             Text(text)
                 .font(.system(size: 15, weight: .bold, design: .default))
-                .padding(.init(
-                    top: 8,
-                    leading: 24,
-                    bottom: 8,
-                    trailing: 24
+                .padding(
+                    .init(
+                        top: 8,
+                        leading: 24,
+                        bottom: 8,
+                        trailing: 24
+                    )
                 )
-                )
+                .frame(maxWidth: .infinity)
         }
     }
 }
