@@ -20,7 +20,6 @@ struct KanbanCard: View {
         } label: {
             RoundedRectangle(cornerRadius: 5)
                 .frame(width: 250, height: 150)
-                .background(Color.secondary)
                 .overlay{
                     VStack {
                         Spacer()
@@ -49,6 +48,7 @@ struct KanbanCard: View {
                         Spacer()
                     }
                     .padding()
+                    .background(Color.gray)
                 }
                 .overlay(
                     // Overlay a new RoundedRectangle and stroke it
