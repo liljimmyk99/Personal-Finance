@@ -7,48 +7,66 @@
 import SwiftUI
 
 struct ProfileView: View {
-    var firstName: String
-    var lastName: String
-    var email: String
-    var phoneNumber: String
+    @EnvironmentObject var appState: AppState
+    var firstName: String = "Jimbo"
+    var lastName: String = "Slice"
+    var email: String = "123@example.com"
+    var phoneNumber: String = "123-456-7890"
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             Image(systemName: "person.circle")
                 .resizable()
                 .frame(width: 80, height: 80)
-            
-            VStack(alignment: .leading) {
-                Text("First Name")
-                    .font(.headline)
-                Text(firstName)
-                    .font(.subheadline)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("First Name")
+                        .font(.title2)
+                    Text(firstName)
+                        .font(.headline)
+                    
+                    Spacer()
+                        .frame(height: 30)
+                    
+                    Text("Last Name")
+                        .font(.title2)
+                    Text(lastName)
+                        .font(.headline)
+                    
+                    Spacer()
+                        .frame(height: 30)
+                    
+                    Text("Email")
+                        .font(.title2)
+                    Text(email)
+                        .font(.headline)
+                    
+                    Spacer()
+                        .frame(height: 30)
+                    
+                    Text("Phone Number")
+                        .font(.title2)
+                    Text(phoneNumber)
+                        .font(.headline)
+                }
                 
-                Text("Last Name")
-                    .font(.headline)
-                Text(lastName)
-                    .font(.subheadline)
+                Spacer()
+            }
+            HStack {
+                PFButton(text: "Go Back", type: .destructive) {
+                    appState.currentView = .list
+                }
                 
-                Text("Email")
-                    .font(.headline)
-                Text(email)
-                    .font(.subheadline)
-                
-                Text("Phone Number")
-                    .font(.headline)
-                Text(phoneNumber)
-                    .font(.subheadline)
+                PFButton(text: "Edit", isDisabled: true) {
+                    print("Not implemented yet")
+                }
             }
         }
+        .frame(width: 300, height: 400)
         .padding()
     }
 }
 
 #Preview {
-    ProfileView(
-        firstName: "Jimbo",
-        lastName: "Slice",
-        email: "123@example.com",
-        phoneNumber: "123-456-7890"
-    )
+    ProfileView()
 }

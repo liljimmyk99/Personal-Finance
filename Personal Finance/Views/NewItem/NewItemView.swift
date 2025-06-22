@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NewItemView: View {
+    
     var body: some View {
         TabView{
             EditTransactionView()

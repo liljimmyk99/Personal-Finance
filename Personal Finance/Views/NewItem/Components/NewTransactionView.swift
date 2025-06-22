@@ -7,16 +7,19 @@
 import SwiftUI
 
 struct EditTransactionView: View {
+    @Environment(\.dismiss) private var dismiss
     @State private var store: String
     @State private var date: Date
     @State private var category: CategoryType
     @State private var amount: Double
     
-    init(transaction: Transaction? = nil) {
-        store = transaction?.store ?? ""
-        date = transaction?.date ?? Date()
-        amount = transaction?.amount ?? 0.0
-        category = transaction?.category ?? .other
+    init(
+        transaction: Transaction? = nil
+    ) {
+        self.store = transaction?.store ?? ""
+        self.date = transaction?.date ?? Date()
+        self.amount = transaction?.amount ?? 0.0
+        self.category = transaction?.category ?? .other
     }
     
     var body: some View {
@@ -40,7 +43,7 @@ struct EditTransactionView: View {
                     amount: amount,
                     category: category
                 )
-                
+                dismiss()
                 print("Created new Transaction: \(transaction)")
             }
         }

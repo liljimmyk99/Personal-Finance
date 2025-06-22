@@ -17,6 +17,8 @@ struct ContentView: View {
                 SigninView()
             case .list:
                 ReportsView()
+            case .profile:
+                ProfileView()
             default:
                 NotImplementedView(featureName: appState.currentView.title)
             }
@@ -26,7 +28,7 @@ struct ContentView: View {
                 if appState.currentView != .signIn {
                     Menu {
                         Button("Profile") {
-                            // Action for Profile
+                            appState.currentView = .profile
                         }
                         Button("Settings") {
                             // Action for Settings

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PFButton: View {
     let text: String
+    
+    let isDisabled: Bool
 
     let type: PFButtonType
 
@@ -27,8 +29,9 @@ struct PFButton: View {
         case destructive
     }
 
-    public init(text: String, type: PFButtonType = .normal, style: PFButtonStyle = .filled, onTap: @escaping () -> Void) {
+    public init(text: String, isDisabled: Bool = false, type: PFButtonType = .normal, style: PFButtonStyle = .filled, onTap: @escaping () -> Void) {
         self.text = text
+        self.isDisabled = isDisabled
         self.type = type
         self.style = style
         self.onTap = onTap
@@ -37,14 +40,41 @@ struct PFButton: View {
     var body: some View {
         switch style {
         case .filled:
-            BasicButton(text: text, onTap: onTap)
-                .buttonStyle(FilledButtonStyle(isDestructive: type == .destructive))
+            BasicButton(
+                text: text,
+                isDisabled: isDisabled,
+                onTap: onTap
+            )
+            .buttonStyle(
+                FilledButtonStyle(
+                    isDestructive: type == .destructive,
+                    isDisabled: isDisabled
+                )
+            )
         case .outlined:
-            BasicButton(text: text, onTap: onTap)
-                .buttonStyle(OutlinedButtonStyle(isDestructive: type == .destructive))
+            BasicButton(
+                text: text,
+                isDisabled: isDisabled,
+                onTap: onTap
+            )
+            .buttonStyle(
+                OutlinedButtonStyle(
+                    isDestructive: type == .destructive,
+                    isDisabled: isDisabled
+                )
+            )
         default:
-            BasicButton(text: text, onTap: onTap)
-                .buttonStyle(TextButtonStyle(isDestructive: type == .destructive))
+            BasicButton(
+                text: text,
+                isDisabled: isDisabled,
+                onTap: onTap
+            )
+            .buttonStyle(
+                TextButtonStyle(
+                    isDestructive: type == .destructive,
+                    isDisabled: isDisabled
+                )
+            )
         }
     }
 }

@@ -8,6 +8,8 @@ import SwiftUI
 
 struct BasicButton: View {
     let text: String
+    
+    let isDisabled: Bool
 
     let onTap: () -> Void
 
@@ -27,5 +29,6 @@ struct BasicButton: View {
                 )
                 .frame(maxWidth: .infinity)
         }
+        .disabled(isDisabled)
     }
 }

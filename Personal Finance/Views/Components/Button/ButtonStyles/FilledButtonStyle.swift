@@ -8,8 +8,13 @@ import SwiftUI
 
 struct FilledButtonStyle: ButtonStyle {
     let isDestructive: Bool
+    let isDisabled: Bool
 
     func color(isPressed: Bool) -> Color {
+        if isDisabled {
+            return Color.gray
+        }
+        
         return if isDestructive {
             isPressed ? Color.red.opacity(0.7) : Color.red
         } else {
