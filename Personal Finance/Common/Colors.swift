@@ -7,5 +7,5 @@
 import SwiftUI
 
 struct PFColors {
-    static var primary: Color  = Color("primary", bundle: .main)
+    static var primary: Color  = Color("PFPrimary", bundle: .main)
 }
