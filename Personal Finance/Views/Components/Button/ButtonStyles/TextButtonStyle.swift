@@ -13,7 +13,7 @@ struct TextButtonStyle: ButtonStyle {
         return if isDestructive {
             isPressed ? Color.red.opacity(0.7) : Color.red
         } else {
-            isPressed ? Color.green.opacity(0.7) : Color.green
+            isPressed ? Color.white.opacity(0.7) : Color.white
         }
     }
 

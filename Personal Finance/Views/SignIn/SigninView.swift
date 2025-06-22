@@ -11,9 +11,9 @@ struct SigninView: View {
 
     var body: some View {
         VStack {
-            Image(systemName: "globe")
+            Image("Logo")
                 .resizable()
-                .frame(width: 50, height: 50)
+                .frame(width: 500, height: 500)
 
             VStack {
                 PFButton(text: "Sign In") {
@@ -24,8 +24,14 @@ struct SigninView: View {
                     appState.currentView = .calendar
                 }
 
-            }.padding(.horizontal, 108)
+            }
+            .padding(.horizontal, 100)
         }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
+        .background(PFColors.primary)
     }
 }
 

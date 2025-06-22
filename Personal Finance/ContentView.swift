@@ -21,9 +21,30 @@ struct ContentView: View {
                 NotImplementedView(featureName: appState.currentView.title)
             }
         }
+        .toolbar {
+            ToolbarItem() {
+                if appState.currentView != .signIn {
+                    Menu {
+                        Button("Profile") {
+                            // Action for Profile
+                        }
+                        Button("Settings") {
+                            // Action for Settings
+                        }
+                        Button("Log Out", role: .destructive) {
+                            appState.currentView = .signIn
+                        }
+                    } label: {
+                        Label("Profile", systemImage: "person.circle")
+                    }
+                }
+            }
+        }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
         .animation(.linear, value: appState.currentView)
-        .frame(minWidth: 500, minHeight: 500)
-        .padding()
     }
 }
 
