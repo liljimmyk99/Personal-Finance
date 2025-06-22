@@ -25,7 +25,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C7BA68AC2DE3C986001DE43A /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		C7BA68AD2DE3C994001DE43A /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
-		C7BA68B22DE3CEC7001DE43A /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
+		C7BA68B22DE3CEC7001DE43A /* Common */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Common; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,7 @@
 		C75A04D32C7C0B9900739285 /* Personal Finance */ = {
 			isa = PBXGroup;
 			children = (
-				C7BA68B22DE3CEC7001DE43A /* Helpers */,
+				C7BA68B22DE3CEC7001DE43A /* Common */,
 				C7BA68AD2DE3C994001DE43A /* Views */,
 				C7BA68AC2DE3C986001DE43A /* Models */,
 				C75A04D42C7C0B9900739285 /* Personal_FinanceApp.swift */,
@@ -96,7 +96,7 @@
 			fileSystemSynchronizedGroups = (
 				C7BA68AC2DE3C986001DE43A /* Models */,
 				C7BA68AD2DE3C994001DE43A /* Views */,
-				C7BA68B22DE3CEC7001DE43A /* Helpers */,
+				C7BA68B22DE3CEC7001DE43A /* Common */,
 			);
 			name = "Personal Finance";
 			productName = "Personal Finance";
