@@ -20,7 +20,7 @@ struct SigninView: View {
                     appState.currentView = .list
                 }
 
-                PFButton(text: "Sign Up", style: .outlined) {
+                PFButton(text: "Sign Up") {
                     appState.currentView = .calendar
                 }
 
@@ -31,7 +31,7 @@ struct SigninView: View {
             maxWidth: .infinity,
             maxHeight: .infinity
         )
-        .background(PFColors.primary)
+        .background(PFColors.signIn)
     }
 }
 

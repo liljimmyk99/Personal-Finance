@@ -24,6 +24,7 @@ struct CategoryView: View {
                 }
             }
             .padding()
+            .background(PFColors.background)
         }
     }
     

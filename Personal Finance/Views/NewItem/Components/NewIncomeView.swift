@@ -45,6 +45,7 @@ struct NewIncomeView: View {
             .padding(.bottom)
         }
         .padding()
+        .background(PFColors.surface)
         
     }
 }

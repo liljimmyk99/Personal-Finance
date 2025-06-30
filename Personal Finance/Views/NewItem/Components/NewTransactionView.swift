@@ -48,6 +48,7 @@ struct EditTransactionView: View {
             }
         }
         .padding()
+        .background(PFColors.surface)
         
     }
 }

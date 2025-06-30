@@ -22,32 +22,41 @@ struct ProfileView: View {
                 VStack(alignment: .leading) {
                     Text("First Name")
                         .font(.title2)
+                        .foregroundStyle(PFColors.headingText)
                     Text(firstName)
                         .font(.headline)
+                        .foregroundStyle(PFColors.mainText)
                     
                     Spacer()
                         .frame(height: 30)
                     
                     Text("Last Name")
                         .font(.title2)
+                        .foregroundStyle(PFColors.headingText)
                     Text(lastName)
                         .font(.headline)
+                        .foregroundStyle(PFColors.mainText)
                     
                     Spacer()
                         .frame(height: 30)
                     
                     Text("Email")
                         .font(.title2)
+                        .foregroundStyle(PFColors.headingText)
                     Text(email)
                         .font(.headline)
+                        .foregroundStyle(PFColors.mainText)
                     
                     Spacer()
                         .frame(height: 30)
                     
                     Text("Phone Number")
                         .font(.title2)
+                        .foregroundStyle(PFColors.headingText)
+                    
                     Text(phoneNumber)
                         .font(.headline)
+                        .foregroundStyle(PFColors.mainText)
                 }
                 
                 Spacer()
@@ -64,6 +73,7 @@ struct ProfileView: View {
         }
         .frame(width: 300, height: 400)
         .padding()
+        .background(PFColors.background)
     }
 }
 
