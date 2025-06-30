@@ -14,49 +14,31 @@ struct SelectInput<T: CaseIterable & RawRepresentable & Hashable>: View where T.
     let placeholder: String? = nil
     
     var body: some View {
-        VStack{
-            HStack {
-                Text(label)
-                    .font(.headline)
-                    .padding(.bottom, 5)
-                
-                Spacer()
-            }
-            Button{
-                showOptions = true
-            } label : {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 4)
-                        .stroke(
-                            Color.blue,
-                            lineWidth: 5)
-                        .background(Color.secondary)
+        InputFieldTemplate(label: label) {
+                Button{
+                    showOptions = true
+                } label : {
                     
-                    HStack {
+                InputFieldBox(isInFocus: showOptions) {
                         Text(option.rawValue)
                             .font(.title2)
-                        Spacer()
-                    }
-                    .padding(.horizontal)
                 }
-                .frame(height: 30)
-            }
-            .buttonStyle(.plain)
-            .popover(
-                isPresented: $showOptions,
-                attachmentAnchor: .point(UnitPoint(x: 0.15, y: 0)),
-                content: {
-                    Picker(label, selection: $option) {
-                        ForEach(options, id: \.self) { option in
-                            Text(option.rawValue).tag(option)
+                .buttonStyle(.plain)
+                .popover(
+                    isPresented: $showOptions,
+                    attachmentAnchor: .point(UnitPoint(x: 0.15, y: 0)),
+                    content: {
+                        Picker(label, selection: $option) {
+                            ForEach(options, id: \.self) { option in
+                                Text(option.rawValue).tag(option)
+                            }
                         }
+                        .datePickerStyle(.graphical)
+                        .padding()
                     }
-                    .datePickerStyle(.graphical)
-                    .padding()
-                }
-            )
+                )
+            }
         }
-        .padding()
     }
 }
 
