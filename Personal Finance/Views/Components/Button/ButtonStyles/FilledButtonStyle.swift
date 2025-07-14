@@ -26,6 +26,10 @@ struct FilledButtonStyle: ButtonStyle {
         configuration.label
             .padding()
             .background(color(isPressed: configuration.isPressed))
+            .overlay(
+                RoundedRectangle(cornerRadius: 100)
+                    .stroke(PFColors.secondary, lineWidth: 2)
+            )
             .clipShape(RoundedRectangle(cornerRadius: 100))
             .foregroundColor(PFColors.mainText)
             .scaleEffect(configuration.isPressed ? 0.98 : 1.0)

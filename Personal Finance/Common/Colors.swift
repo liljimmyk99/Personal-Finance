@@ -12,6 +12,7 @@ struct PFColors {
     static let headingText: Color  = Color("PFHeadingText", bundle: .main)
     static let mainText: Color  = Color("PFMainText", bundle: .main)
     static let primary: Color  = Color("PFPrimary", bundle: .main)
+    static let secondary: Color  = Color("PFSecondary", bundle: .main)
     static let signIn: Color  = Color("PFSignIn", bundle: .main)
     static let surface: Color  = Color("PFSurface", bundle: .main)
     static let textFieldActive: Color  = Color("PFTextFieldActive", bundle: .main)
