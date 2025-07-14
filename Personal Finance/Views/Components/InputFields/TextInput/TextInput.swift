@@ -7,39 +7,20 @@
 import SwiftUI
 
 struct TextInput: View {
+    @FocusState private var isInFocus: Bool
     @Binding var text: String
     let label: String
     let placeholder: String? = nil
     
     var body: some View {
-        VStack{
-            HStack {
-                Text(label)
-                    .font(.headline)
-                    .padding(.bottom, 5)
-            
-                Spacer()
+        InputFieldTemplate(label: label) {
+            InputFieldBox(isInFocus: isInFocus) {
+                TextField(placeholder ?? "", text: $text)
+                    .textFieldStyle(.plain)
+                    .font(.title2)
+                    .focused($isInFocus)
             }
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 4)
-                    .stroke(
-                        Color.blue,
-                        lineWidth: 5)
-                    .background(Color.secondary)
-                
-                HStack {
-                    TextField(placeholder ?? "", text: $text)
-                        .textFieldStyle(.plain)
-                        .font(.title2)
-                    
-                    Spacer()
-                }
-                .padding(.horizontal)
-            }
-            .frame(height: 30)
         }
-        .padding()
     }
 }
 

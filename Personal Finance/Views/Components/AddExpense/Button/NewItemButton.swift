@@ -13,7 +13,7 @@ public struct NewItemButton: View {
         Button(action: { onTap() }) {
             ZStack {
                 Circle()
-                    .foregroundStyle(Color.green)
+                    .foregroundStyle(PFColors.primary)
                     .frame(width: 75, height: 75)
                 
                 Image(systemName: "plus")

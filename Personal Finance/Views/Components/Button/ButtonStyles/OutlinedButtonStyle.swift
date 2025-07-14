@@ -8,12 +8,16 @@ import SwiftUI
 
 struct OutlinedButtonStyle: ButtonStyle {
     let isDestructive: Bool
+    let isDisabled: Bool
 
     func color(isPressed: Bool) -> Color {
+        if isDisabled {
+            return PFColors.textFieldDisabled
+        }
         return if isDestructive {
-            isPressed ? Color.red.opacity(0.7) : Color.red
+            isPressed ? PFColors.destructiveButton.opacity(0.7) : PFColors.destructiveButton
         } else {
-            isPressed ? Color.white.opacity(0.7) : Color.white
+            isPressed ? PFColors.primary.opacity(0.7) : PFColors.primary
         }
     }
 

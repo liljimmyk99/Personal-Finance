@@ -57,6 +57,7 @@ struct MonthsView: View {
                 $0.date.formatted(.dateTime.month().year()) == selectedMonth.formatted(.dateTime.month().year())
             })
         }
+        .background(PFColors.surface)
     }
 }
 

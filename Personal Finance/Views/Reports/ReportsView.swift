@@ -33,7 +33,12 @@ struct ReportsView: View {
                 HStack{
                     Spacer()
                     
-                    NewItemButton(onTap: {openWindow(id: "new-item")})
+                    NewItemButton(
+                        onTap: {
+                            openWindow(id: "new-item")
+                        }
+                    )
+                    .padding()
                 }
             }
         }

@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct NewIncomeView: View {
+    @Environment(\.dismiss) private var dismiss
     @State var source: String = ""
     @State var date: Date = Date()
     @State var grossAmount: Double = 0.0
@@ -39,9 +40,12 @@ struct NewIncomeView: View {
                     lastUpdated: Date()
                 )
                 print("Created new Income: \(income)")
+                dismiss()
             }
             .padding(.bottom)
         }
+        .padding()
+        .background(PFColors.surface)
         
     }
 }

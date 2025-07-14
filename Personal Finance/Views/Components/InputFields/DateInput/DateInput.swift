@@ -14,32 +14,14 @@ struct DateInput: View {
     let placeholder: String? = nil
     
     var body: some View {
-        VStack{
-            HStack {
-                Text(label)
-                    .font(.headline)
-                    .padding(.bottom, 5)
-                
-                Spacer()
-            }
-            Button{
-                showDatePicker = true
-            } label : {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 4)
-                        .stroke(
-                            Color.blue,
-                            lineWidth: 5)
-                        .background(Color.secondary)
-                    
-                    HStack {
-                        Text(date.formatted(.dateTime.month(.wide).day().year()))
-                            .font(.title2)
-                        Spacer()
-                    }
-                    .padding(.horizontal)
+        InputFieldTemplate(label: label) {
+                Button{
+                    showDatePicker = true
+                } label : {
+                InputFieldBox(isInFocus: showDatePicker) {
+                    Text(date.formatted(.dateTime.month(.wide).day().year()))
+                        .font(.title2)
                 }
-                .frame(height: 30)
             }
             .buttonStyle(.plain)
             .popover(
@@ -56,7 +38,6 @@ struct DateInput: View {
                 }
             )
         }
-        .padding()
     }
 }
 

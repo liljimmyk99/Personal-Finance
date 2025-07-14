@@ -27,6 +27,7 @@ struct AmountView: View {
             }
             TableColumn("Category", value: \.category.rawValue)
         }
+        .background(PFColors.surface)
     }
 }
 

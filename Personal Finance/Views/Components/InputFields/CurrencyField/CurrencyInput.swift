@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct CurrencyInput: View {
+    @FocusState private var isInFocus: Bool
     @Binding var amount: Double
     let label: String
     let placeholder: String? = nil
@@ -20,38 +21,18 @@ struct CurrencyInput: View {
        }
     
     var body: some View {
-        VStack{
-            HStack {
-                Text(label)
-                    .font(.headline)
-                    .padding(.bottom, 5)
-            
-                Spacer()
+        InputFieldTemplate(label: label) {
+            InputFieldBox(isInFocus: isInFocus) {
+                TextField(
+                    "Amount",
+                    value: $amount,
+                    formatter: currencyFormatter
+                )
+                .textFieldStyle(.plain)
+                .font(.title2)
+                .focused($isInFocus)
             }
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 4)
-                    .stroke(
-                        Color.blue,
-                        lineWidth: 5)
-                    .background(Color.secondary)
-                
-                HStack {
-                    TextField(
-                        "Amount",
-                        value: $amount,
-                        formatter: currencyFormatter
-                    )
-                    .textFieldStyle(.plain)
-                    .font(.title2)
-                    
-                    Spacer()
-                }
-                .padding(.horizontal)
-            }
-            .frame(height: 30)
         }
-        .padding()
     }
 }
 

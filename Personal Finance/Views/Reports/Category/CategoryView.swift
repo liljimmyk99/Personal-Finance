@@ -24,6 +24,7 @@ struct CategoryView: View {
                 }
             }
             .padding()
+            .background(PFColors.background)
         }
     }
     
@@ -32,7 +33,14 @@ struct CategoryView: View {
         let filteredTransactions: [Transaction] = transactions.filter{ $0.category == category }
         ScrollView{
             ForEach(filteredTransactions) { transaction in
-                KanbanCard(store: transaction.store, amount: transaction.amount, date: transaction.date, onPress: {openWindow(value: transaction)})
+                KanbanCard(
+                    store: transaction.store,
+                    amount: transaction.amount,
+                    date: transaction.date,
+                    onPress: {
+                        openWindow(value: transaction)
+                    }
+                )
             }
         }
     }

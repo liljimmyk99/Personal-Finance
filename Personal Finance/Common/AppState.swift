@@ -12,6 +12,7 @@ class AppState: ObservableObject {
         case list
         case signIn
         case signUp
+        case profile
 
         var title: String {
             switch self {
@@ -23,6 +24,8 @@ class AppState: ObservableObject {
                 return "Sign In"
             case .signUp:
                 return "Sign Up"
+            case .profile:
+                return "Profile"
             }
         }
     }

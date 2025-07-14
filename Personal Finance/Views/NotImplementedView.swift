@@ -22,15 +22,17 @@ struct NotImplementedView: View {
                 .font(.title2)
                 .multilineTextAlignment(.center)
                 .padding()
+                .foregroundStyle(PFColors.headingText)
 
             Text("Please check back in a future update.")
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(PFColors.mainText)
 
             PFButton(text: "Back to Sign-In", style: .outlined) {
                 appState.currentView = .signIn
             }
         }
+        .background(PFColors.background)
     }
 }
 

@@ -20,7 +20,6 @@ struct KanbanCard: View {
         } label: {
             RoundedRectangle(cornerRadius: 5)
                 .frame(width: 250, height: 150)
-                .background(Color.secondary)
                 .overlay{
                     VStack {
                         Spacer()
@@ -28,7 +27,7 @@ struct KanbanCard: View {
                         HStack {
                             Text(store)
                                 .font(.title2)
-                                .foregroundStyle(Color.green)
+                                .foregroundStyle(PFColors.headingText)
                             
                             Spacer()
                         }
@@ -37,26 +36,28 @@ struct KanbanCard: View {
                         
                         HStack {
                             Text(date.formatted(.dateTime.month().day().year()))
-                                .foregroundStyle(Color.green)
+                                .foregroundStyle(PFColors.mainText)
                             
                             Spacer()
                             
                             Text(amount, format: .currency(code: "USD"))
                                 .font(.headline)
-                                .foregroundStyle(Color.green)
+                                .foregroundStyle(PFColors.mainText)
                         }
                         
                         Spacer()
                     }
                     .padding()
+                    .background(PFColors.surface)
                 }
-                .overlay(
-                    // Overlay a new RoundedRectangle and stroke it
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.green, lineWidth: 5)
-                )
         }
         .buttonStyle(PlainButtonStyle())
+        .overlay(
+            // Overlay a new RoundedRectangle and stroke it
+            RoundedRectangle(cornerRadius: 5)
+                .stroke(PFColors.primary, lineWidth: 5)
+        )
+        .padding()
     }
 }
 
