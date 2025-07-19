@@ -9,23 +9,29 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject private var authManager: AuthenticationManager
+    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         Group {
             switch appState.currentView {
-            case .signIn:
-                SigninView()
+            case .splashScreen:
+                SplashScreen()
             case .list:
                 ReportsView()
             case .profile:
                 ProfileView()
+            case .signIn:
+                SignInView()
+            case .signUp:
+                SignUpView()
             default:
                 NotImplementedView(featureName: appState.currentView.title)
             }
         }
         .toolbar {
+            if authManager.isSignedin {
             ToolbarItem() {
-                if appState.currentView != .signIn {
                     Menu {
                         Button("Profile") {
                             appState.currentView = .profile
@@ -34,13 +40,16 @@ struct ContentView: View {
                             // Action for Settings
                         }
                         Button("Log Out", role: .destructive) {
-                            appState.currentView = .signIn
+                            appState.currentView = .splashScreen
                         }
                     } label: {
                         Label("Profile", systemImage: "person.circle")
                     }
                 }
             }
+        }
+        .onAppear {
+            authManager.setContext(modelContext)
         }
         .frame(
             maxWidth: .infinity,
@@ -53,4 +62,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(AppState())
+        .environmentObject(AuthenticationManager())
 }

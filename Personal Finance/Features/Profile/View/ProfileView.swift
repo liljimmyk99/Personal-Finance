@@ -8,10 +8,6 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var appState: AppState
-    var firstName: String = "Jimbo"
-    var lastName: String = "Slice"
-    var email: String = "123@example.com"
-    var phoneNumber: String = "123-456-7890"
     
     var body: some View {
         VStack(alignment: .center) {
@@ -23,7 +19,7 @@ struct ProfileView: View {
                     Text("First Name")
                         .font(.title2)
                         .foregroundStyle(PFColors.headingText)
-                    Text(firstName)
+                    Text(appState.currentUser!.firstName)
                         .font(.headline)
                         .foregroundStyle(PFColors.mainText)
                     
@@ -33,7 +29,7 @@ struct ProfileView: View {
                     Text("Last Name")
                         .font(.title2)
                         .foregroundStyle(PFColors.headingText)
-                    Text(lastName)
+                    Text(appState.currentUser!.lastName)
                         .font(.headline)
                         .foregroundStyle(PFColors.mainText)
                     
@@ -43,7 +39,7 @@ struct ProfileView: View {
                     Text("Email")
                         .font(.title2)
                         .foregroundStyle(PFColors.headingText)
-                    Text(email)
+                    Text(appState.currentUser!.email)
                         .font(.headline)
                         .foregroundStyle(PFColors.mainText)
                     
@@ -54,7 +50,7 @@ struct ProfileView: View {
                         .font(.title2)
                         .foregroundStyle(PFColors.headingText)
                     
-                    Text(phoneNumber)
+                    Text(appState.currentUser!.phoneNumber)
                         .font(.headline)
                         .foregroundStyle(PFColors.mainText)
                 }
@@ -79,4 +75,6 @@ struct ProfileView: View {
 
 #Preview {
     ProfileView()
+        .environmentObject(AppState())
+        .environmentObject(AuthenticationManager())
 }
