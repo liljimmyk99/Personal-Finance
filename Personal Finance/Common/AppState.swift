@@ -13,6 +13,7 @@ class AppState: ObservableObject {
         case signIn
         case signUp
         case profile
+        case splashScreen
 
         var title: String {
             switch self {
@@ -26,10 +27,13 @@ class AppState: ObservableObject {
                 return "Sign Up"
             case .profile:
                 return "Profile"
+            case .splashScreen:
+                return "Splash Screen"
             }
         }
     }
-
-    @Published var currentView: ViewType = .signIn
+    
+    @Published var currentUser: User? = nil
+    @Published var currentView: ViewType = .splashScreen
     @Published var isAddExpensePresented: Bool = false
 }

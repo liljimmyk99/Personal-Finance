@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7D1260F2E24B5B50021F2DC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D1260E2E24B5B50021F2DC /* User.swift */; };
+		C7D126112E24B6790021F2DC /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D126102E24B6750021F2DC /* AuthenticationManager.swift */; };
+		C7D126132E254C330021F2DC /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D126122E254C330021F2DC /* SignInView.swift */; };
+		C7D126162E254C7F0021F2DC /* SecureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D126142E254C7F0021F2DC /* SecureInput.swift */; };
+		C7D126182E254E210021F2DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D126172E254E1B0021F2DC /* SignUpView.swift */; };
 		C7FED0642E24B29600738F30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7FED05F2E24B29600738F30 /* Assets.xcassets */; };
 		C7FED0652E24B29600738F30 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0342E24B29600738F30 /* TextInput.swift */; };
 		C7FED0662E24B29600738F30 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0382E24B29600738F30 /* AppState.swift */; };
@@ -16,7 +21,7 @@
 		C7FED06A2E24B29600738F30 /* MonthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED04E2E24B29600738F30 /* MonthsView.swift */; };
 		C7FED06B2E24B29600738F30 /* CalendarWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0292E24B29600738F30 /* CalendarWeek.swift */; };
 		C7FED06C2E24B29600738F30 /* CalendarMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0282E24B29600738F30 /* CalendarMonth.swift */; };
-		C7FED06E2E24B29600738F30 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0552E24B29600738F30 /* SigninView.swift */; };
+		C7FED06E2E24B29600738F30 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0552E24B29600738F30 /* SplashScreen.swift */; };
 		C7FED06F2E24B29600738F30 /* CurrencyInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED02E2E24B29600738F30 /* CurrencyInput.swift */; };
 		C7FED0702E24B29600738F30 /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED03C2E24B29600738F30 /* NewItemView.swift */; };
 		C7FED0712E24B29600738F30 /* SelectInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0322E24B29600738F30 /* SelectInput.swift */; };
@@ -42,6 +47,11 @@
 
 /* Begin PBXFileReference section */
 		C75A04D12C7C0B9900739285 /* Personal Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personal Finance.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7D1260E2E24B5B50021F2DC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C7D126102E24B6750021F2DC /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		C7D126122E254C330021F2DC /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		C7D126142E254C7F0021F2DC /* SecureInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInput.swift; sourceTree = "<group>"; };
+		C7D126172E254E1B0021F2DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C7FED01D2E24B29600738F30 /* NewItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemButton.swift; sourceTree = "<group>"; };
 		C7FED0202E24B29600738F30 /* FilledButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButtonStyle.swift; sourceTree = "<group>"; };
 		C7FED0212E24B29600738F30 /* OutlinedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButtonStyle.swift; sourceTree = "<group>"; };
@@ -68,7 +78,7 @@
 		C7FED04A2E24B29600738F30 /* KanbanCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanCardView.swift; sourceTree = "<group>"; };
 		C7FED04E2E24B29600738F30 /* MonthsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthsView.swift; sourceTree = "<group>"; };
 		C7FED0522E24B29600738F30 /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
-		C7FED0552E24B29600738F30 /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
+		C7FED0552E24B29600738F30 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		C7FED0592E24B29600738F30 /* NotImplementedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotImplementedView.swift; sourceTree = "<group>"; };
 		C7FED05F2E24B29600738F30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7FED0612E24B29600738F30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +114,14 @@
 				C75A04D12C7C0B9900739285 /* Personal Finance.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C7D126152E254C7F0021F2DC /* SecureInput */ = {
+			isa = PBXGroup;
+			children = (
+				C7D126142E254C7F0021F2DC /* SecureInput.swift */,
+			);
+			path = SecureInput;
 			sourceTree = "<group>";
 		};
 		C7FED01E2E24B29600738F30 /* Button */ = {
@@ -201,6 +219,7 @@
 				C7FED0312E24B29600738F30 /* DateInput */,
 				C7FED0332E24B29600738F30 /* SelectInput */,
 				C7FED0352E24B29600738F30 /* TextInput */,
+				C7D126152E254C7F0021F2DC /* SecureInput */,
 			);
 			path = InputFields;
 			sourceTree = "<group>";
@@ -364,6 +383,7 @@
 		C7FED0542E24B29600738F30 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C7D1260E2E24B5B50021F2DC /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -371,7 +391,9 @@
 		C7FED0562E24B29600738F30 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C7FED0552E24B29600738F30 /* SigninView.swift */,
+				C7D126172E254E1B0021F2DC /* SignUpView.swift */,
+				C7FED0552E24B29600738F30 /* SplashScreen.swift */,
+				C7D126122E254C330021F2DC /* SignInView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,6 +401,7 @@
 		C7FED0572E24B29600738F30 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C7D126102E24B6750021F2DC /* AuthenticationManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -405,13 +428,6 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
-		C7FED05E2E24B29600738F30 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		C7FED0602E24B29600738F30 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,7 +441,6 @@
 			children = (
 				C7FED03A2E24B29600738F30 /* Common */,
 				C7FED05A2E24B29600738F30 /* Features */,
-				C7FED05E2E24B29600738F30 /* Models */,
 				C7FED0602E24B29600738F30 /* Resources */,
 				C7FED0612E24B29600738F30 /* ContentView.swift */,
 				C7FED0622E24B29600738F30 /* Personal_FinanceApp.swift */,
@@ -513,23 +528,28 @@
 				C7FED06A2E24B29600738F30 /* MonthsView.swift in Sources */,
 				C7FED06B2E24B29600738F30 /* CalendarWeek.swift in Sources */,
 				C7FED06C2E24B29600738F30 /* CalendarMonth.swift in Sources */,
-				C7FED06E2E24B29600738F30 /* SigninView.swift in Sources */,
+				C7FED06E2E24B29600738F30 /* SplashScreen.swift in Sources */,
 				C7FED06F2E24B29600738F30 /* CurrencyInput.swift in Sources */,
 				C7FED0702E24B29600738F30 /* NewItemView.swift in Sources */,
 				C7FED0712E24B29600738F30 /* SelectInput.swift in Sources */,
 				C7FED0722E24B29600738F30 /* AmountView.swift in Sources */,
 				C7FED0732E24B29600738F30 /* NewIncomeView.swift in Sources */,
 				C7FED0742E24B29600738F30 /* DateInput.swift in Sources */,
+				C7D126132E254C330021F2DC /* SignInView.swift in Sources */,
 				C7FED0752E24B29600738F30 /* Colors.swift in Sources */,
 				C7FED0762E24B29600738F30 /* NewTransactionView.swift in Sources */,
 				C7FED0772E24B29600738F30 /* OutlinedButtonStyle.swift in Sources */,
 				C7FED0782E24B29600738F30 /* KanbanCardView.swift in Sources */,
 				C7FED0792E24B29600738F30 /* ReportsView.swift in Sources */,
+				C7D126182E254E210021F2DC /* SignUpView.swift in Sources */,
 				C7FED07B2E24B29600738F30 /* InputFieldTemplate.swift in Sources */,
+				C7D1260F2E24B5B50021F2DC /* User.swift in Sources */,
 				C7FED07C2E24B29600738F30 /* ProfileView.swift in Sources */,
 				C7FED07D2E24B29600738F30 /* ContentView.swift in Sources */,
 				C7FED07E2E24B29600738F30 /* NotImplementedView.swift in Sources */,
 				C7FED0802E24B29600738F30 /* Personal_FinanceApp.swift in Sources */,
+				C7D126162E254C7F0021F2DC /* SecureInput.swift in Sources */,
+				C7D126112E24B6790021F2DC /* AuthenticationManager.swift in Sources */,
 				C7FED0812E24B29600738F30 /* CategoryView.swift in Sources */,
 				C7FED0822E24B29600738F30 /* TextButtonStyle.swift in Sources */,
 				C7FED0832E24B29600738F30 /* PFButton.swift in Sources */,

@@ -1,41 +1,43 @@
 //
-//  SigninView.swift
+//  SignInView.swift
 //  Personal Finance
 //
-//  Created by Jimmy Kane on 5/25/25.
+//  Created by Jimmy Kane on 7/14/25.
 //
+
 import SwiftUI
 
-struct SigninView: View {
+struct SignInView: View {
+    @EnvironmentObject var authManager: AuthenticationManager
     @EnvironmentObject var appState: AppState
+    @State private var email: String = ""
+    @State private var password: String = ""
+    @State private var error: String?
 
+    
     var body: some View {
         VStack {
-            Image("Logo")
-                .resizable()
-                .frame(width: 500, height: 500)
-
-            VStack {
-                PFButton(text: "Sign In") {
+            TextInput(text: $email, label: "Email")
+            SecureInput(text: $password, label: "Password")
+            PFButton(text: "Sign-In") {
+                do {
+                    try authManager.signIn(email: email, password: password)
                     appState.currentView = .list
+                    appState.currentUser = authManager.currentUser
+                } catch {
+                    self.error = "Invalid email or password"
                 }
-
-                PFButton(text: "Sign Up") {
-                    appState.currentView = .calendar
-                }
-
             }
-            .padding(.horizontal, 100)
+            PFButton(text: "Cancel", style: .outlined) {
+                appState.currentView = .splashScreen
+            }
+            if let error { Text(error).foregroundColor(PFColors.destructiveButton) }
         }
-        .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity
-        )
-        .background(PFColors.signIn)
     }
 }
 
 #Preview {
-    SigninView()
+    SignInView()
         .environmentObject(AppState())
+        .environmentObject(AuthenticationManager())
 }
