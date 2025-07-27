@@ -23,4 +23,8 @@ enum CategoryType: String, CaseIterable, Hashable, Codable {
     case entertainment = "Entertainment"
     case debt = "Debt"
     case other = "Other"
+    
+    #if DEBUG
+    static let allCases: [CategoryType] = [.savings, .housing, .utilities, .food, .transportation, .entertainment, .debt, .other]
+    #endif
 }

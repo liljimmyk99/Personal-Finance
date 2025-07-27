@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct AmountView: View {
-    @State var transactions: [Transaction] = []
+    @ObservedObject var viewModel: AmountViewModel
     @State private var sortOrder: [KeyPathComparator<Transaction>] = [
         .init(\.store, order: .forward),
     ]
+    @FocusState private var isFocused: Bool
 
     var body: some View {
         Table(
-            transactions.sorted(using: sortOrder),
+            viewModel.transactions.sorted(using: sortOrder),
             sortOrder: $sortOrder
         ) {
             TableColumn("Store", value: \.store)
@@ -28,9 +29,15 @@ struct AmountView: View {
             TableColumn("Category", value: \.category.rawValue)
         }
         .background(PFColors.surface)
+        .focused($isFocused)
+        .onChange(of: isFocused, { oldFocus, newFocus in
+            if newFocus {
+                viewModel.fetchAllTransactions()
+            }
+        })
     }
 }
 
 #Preview {
-    AmountView(transactions: Transaction.demoData)
+    AmountView(viewModel: .init(customerID: Int64()))
 }

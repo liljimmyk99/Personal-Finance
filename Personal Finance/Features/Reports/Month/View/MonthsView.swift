@@ -7,12 +7,12 @@
 import SwiftUI
 
 struct MonthsView: View {
-    @State var transactions: [Transaction] = []
-    @State private var filteredTransactions: [Transaction] = []
+    @ObservedObject var viewModel: MonthsViewModel
     @State private var sortOrder: [KeyPathComparator<Transaction>] = [
         .init(\.date, order: .reverse),
     ]
     @State private var selectedMonth: Date = Date()
+    @FocusState var isFocused: Bool
 
     var body: some View {
         VStack {
@@ -34,7 +34,7 @@ struct MonthsView: View {
             .padding(.vertical, 8)
             
             Table(
-                filteredTransactions.sorted(using: sortOrder),
+                viewModel.transactions.sorted(using: sortOrder),
                 sortOrder: $sortOrder
             ) {
                 TableColumn("Store", value: \.store)
@@ -48,19 +48,18 @@ struct MonthsView: View {
             }
         }
         .onChange(of: selectedMonth) {
-            filteredTransactions =  transactions.filter({
-                $0.date.formatted(.dateTime.month().year()) == selectedMonth.formatted(.dateTime.month().year())
-            })
+            viewModel.updateTransactions(selectedMonth)
         }
-        .onAppear() {
-            filteredTransactions = transactions.filter({
-                $0.date.formatted(.dateTime.month().year()) == selectedMonth.formatted(.dateTime.month().year())
-            })
-        }
+        .focused($isFocused)
+        .onChange(of: isFocused, { oldFocus, newFocus in
+            if newFocus {
+                viewModel.updateTransactions(selectedMonth)
+            }
+        })
         .background(PFColors.surface)
     }
 }
 
 #Preview {
-    MonthsView(transactions: Transaction.demoData)
+    MonthsView(viewModel: MonthsViewModel(customerID: Int64()))
 }

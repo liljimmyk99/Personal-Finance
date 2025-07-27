@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct NewItemView: View {
-    
+    @EnvironmentObject var appState: AppState
     var body: some View {
         TabView{
-            EditTransactionView()
-                .tabItem {
-                    Text("Transaction")
-                }
+            EditTransactionView(
+                viewModel: EditTransactionViewModel(
+                    customerID: appState.currentUser?.id
+                )
+            )
+            .tabItem {
+                Text("Transaction")
+            }
             NewIncomeView()
                 .tabItem {
                     Text("Income")

@@ -30,8 +30,10 @@ struct NewIncomeView: View {
             }
             .padding()
             
+            // TODO: Add AuthManager/AppState to get current signedIn User
             PFButton(text: "Submit") {
                 let income = Income(
+                    userID: UUID(),
                     date: date,
                     source: source,
                     grossAmount: grossAmount,

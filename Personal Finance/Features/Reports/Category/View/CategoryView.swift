@@ -8,8 +8,8 @@ import SwiftUI
 
 struct CategoryView: View {
     @Environment(\.openWindow) private var openWindow
+    @ObservedObject var viewModel: CategoryViewModel
     @EnvironmentObject var appState: AppState
-    @State var transactions: [Transaction] = []
     
     var body: some View {
         ScrollView(.horizontal) {
@@ -30,9 +30,8 @@ struct CategoryView: View {
     
     @ViewBuilder
     func transactionsForCategory(_ category: CategoryType) -> some View {
-        let filteredTransactions: [Transaction] = transactions.filter{ $0.category == category }
         ScrollView{
-            ForEach(filteredTransactions) { transaction in
+            ForEach(viewModel.fetchTransactionsForCategory(category: category)) { transaction in
                 KanbanCard(
                     store: transaction.store,
                     amount: transaction.amount,
@@ -47,5 +46,5 @@ struct CategoryView: View {
 }
 
 #Preview {
-    CategoryView(transactions: Transaction.demoData)
+    CategoryView(viewModel: CategoryViewModel(customerID: Int64()))
 }
