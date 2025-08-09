@@ -23,7 +23,18 @@ class EditTransactionViewModel: ObservableObject {
         self.customerID = customerID ?? Int64()
     }
     
-    init(transaction: Transaction, customerID: Int64?) {
+    init(transaction: Transaction?, customerID: Int64?) {
+        guard let transaction else {
+            self.store = ""
+            self.date = Date()
+            self.category = .other
+            self.amount = 0.0
+            self.transactionID =  Int64()
+            self.customerID = Int64()
+            
+            return
+        }
+        
         self.store = transaction.store
         self.date = transaction.date
         self.category = transaction.category

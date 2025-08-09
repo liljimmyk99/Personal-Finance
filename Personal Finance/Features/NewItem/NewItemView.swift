@@ -19,10 +19,14 @@ struct NewItemView: View {
             .tabItem {
                 Text("Transaction")
             }
-            NewIncomeView()
-                .tabItem {
-                    Text("Income")
-                }
+            NewIncomeView(
+                viewModel: NewIncomeViewModel(
+                    customerID: appState.currentUser?.id
+                )
+            )
+            .tabItem {
+                Text("Income")
+            }
         }
     }
 }

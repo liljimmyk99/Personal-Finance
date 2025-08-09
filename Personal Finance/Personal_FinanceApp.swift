@@ -22,7 +22,7 @@ struct Personal_FinanceApp: App {
         WindowGroup(for: Transaction.self) { $transaction in
             EditTransactionView(
                 viewModel: EditTransactionViewModel(
-                    transaction: transaction.unsafelyUnwrapped,
+                    transaction: transaction,
                     customerID: appState.currentUser?.id
                 )
             )

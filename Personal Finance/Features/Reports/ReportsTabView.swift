@@ -14,14 +14,7 @@ struct ReportsTabView: View {
     var body: some View {
         ZStack {
             TabView {
-                AmountView(
-                    viewModel: AmountViewModel(
-                        customerID: appState.currentUser?.id
-                    )
-                )
-                    .tabItem {
-                        Text("Amount")
-                    }
+                // TODO: Create Calendar View
                 CategoryView(
                     viewModel: CategoryViewModel(
                         customerID: appState.currentUser?.id

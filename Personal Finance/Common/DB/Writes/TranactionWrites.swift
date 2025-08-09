@@ -17,6 +17,13 @@ extension AppDatabase {
         }
     }
     
+    /// Delete the specified transaction
+    func deleteTransaction(id: Int64) throws {
+        try dbWriter.write { db in
+            _ = try Transaction.deleteOne(db, key: id)
+        }
+    }
+    
     /// Delete the specified transactions
     func deleteTransactions(ids: [Int64]) throws {
         try dbWriter.write { db in

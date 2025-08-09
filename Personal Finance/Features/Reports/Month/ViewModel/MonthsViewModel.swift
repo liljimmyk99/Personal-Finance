@@ -31,6 +31,22 @@ class MonthsViewModel: ObservableObject {
         }
     }
     
+    func deleteTransaction(transaction: Transaction?) {
+        guard let id = transaction?.id else {
+            print("Transaction has no ID: \(String(describing: transaction))")
+            return
+        }
+        do {
+            try database.deleteTransaction(id: id)
+        } catch {
+            print("Failed to delete transaction: \(error)")
+        }
+    }
+    
+    func getTransaction(id: Int64) -> Transaction? {
+        return transactions.first(where: {$0.id == id})
+    }
+    
     func getMonthAndYear(date: Date) -> (month: Int, year: Int) {
             let month = Calendar.current.component(.month, from: date)
            let year = Calendar.current.component(.year, from: date)

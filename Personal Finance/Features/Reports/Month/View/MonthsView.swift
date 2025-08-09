@@ -4,58 +4,52 @@
 //
 //  Created by Jimmy Kane on 6/15/25.
 //
+import AppKit
 import SwiftUI
 
 struct MonthsView: View {
+    @State private var isFocused: Bool = false
+    @Environment(\.openWindow) private var openWindow
     @ObservedObject var viewModel: MonthsViewModel
     @State private var sortOrder: [KeyPathComparator<Transaction>] = [
         .init(\.date, order: .reverse),
     ]
     @State private var selectedMonth: Date = Date()
-    @FocusState var isFocused: Bool
 
     var body: some View {
         VStack {
-            HStack {
-                Button {
-                    selectedMonth = Calendar.current.date(byAdding: .month, value: -1, to: selectedMonth) ?? selectedMonth
-                } label: {
-                    Image(systemName: "chevron.left")
-                }
-
-                Text(selectedMonth.formatted(.dateTime.month(.wide).year()))
-                
-                Button {
-                    selectedMonth = Calendar.current.date(byAdding: .month, value: 1, to: selectedMonth) ?? selectedMonth
-                } label: {
-                    Image(systemName: "chevron.right")
-                }
-            }
-            .padding(.vertical, 8)
+            CalendarHeader(selectedMonth: $selectedMonth)
             
-            Table(
-                viewModel.transactions.sorted(using: sortOrder),
-                sortOrder: $sortOrder
-            ) {
-                TableColumn("Store", value: \.store)
-                TableColumn("Date") { transaction in
-                    Text(transaction.date.formatted(.dateTime.month().day()))
+            TransactionList(
+                transactions: viewModel.transactions,
+                onEditButtonTap: { transaction in
+                    openWindow(value: transaction)
+                },
+                onDeleteButtonTap: { transaction in
+                    // TODO: Implement are you Sure
+                    viewModel.deleteTransaction(transaction: transaction)
+                    viewModel.updateTransactions(selectedMonth)
                 }
-                TableColumn("Amount") { transaction in
-                    Text(transaction.amount, format: .currency(code: "USD"))
-                }
-                TableColumn("Category", value: \.category.rawValue)
-            }
+            )
+            
+        }
+        .onReceive(
+            NotificationCenter.default.publisher(
+                for: NSWindow.didBecomeKeyNotification
+            )
+        ) { _ in
+            isFocused = NSApp.keyWindow == NSApp.mainWindow
+        }
+        .onReceive(
+            NotificationCenter.default.publisher(
+                for: NSWindow.didResignKeyNotification
+            )
+        ) { _ in
+            isFocused = false
         }
         .onChange(of: selectedMonth) {
             viewModel.updateTransactions(selectedMonth)
         }
-        .focused($isFocused)
-        .onChange(of: isFocused, { oldFocus, newFocus in
-            if newFocus {
-                viewModel.updateTransactions(selectedMonth)
-            }
-        })
         .background(PFColors.surface)
     }
 }
