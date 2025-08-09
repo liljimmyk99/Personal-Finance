@@ -17,17 +17,27 @@ struct Personal_FinanceApp: App {
             ContentView()
                 .environmentObject(appState)
                 .environmentObject(authManager)
-                .modelContainer(for: [User.self] )
         }
         
         WindowGroup(for: Transaction.self) { $transaction in
-            EditTransactionView(transaction: transaction)
+            EditTransactionView(
+                viewModel: EditTransactionViewModel(
+                    transaction: transaction,
+                    customerID: appState.currentUser?.id
+                )
+            )
+            .environmentObject(appState)
         }
         
         WindowGroup(id: "new-item") {
             NewItemView()
-                .frame(minWidth: 500, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity)
+                .frame(
+                    minWidth: 500,
+                    maxWidth: .infinity,
+                    minHeight: 500,
+                    maxHeight: .infinity
+                )
+                .environmentObject(appState)
         }
-        
     }
 }

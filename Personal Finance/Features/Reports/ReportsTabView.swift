@@ -6,23 +6,28 @@
 //
 import SwiftUI
 
-struct ReportsView: View {
+struct ReportsTabView: View {
     @Environment(\.openWindow) private var openWindow
     @EnvironmentObject var appState: AppState
     @State var transactions: [Transaction] = []
-
+    
     var body: some View {
         ZStack {
             TabView {
-                CategoryView(transactions: Transaction.demoData)
-                    .tabItem {
-                        Text("Amount")
-                    }
-                AmountView(transactions: Transaction.demoData)
+                // TODO: Create Calendar View
+                CategoryView(
+                    viewModel: CategoryViewModel(
+                        customerID: appState.currentUser?.id
+                    )
+                )
                     .tabItem {
                         Text("Categories")
                     }
-                MonthsView(transactions: Transaction.demoData)
+                MonthsView(
+                    viewModel: MonthsViewModel(
+                        customerID: appState.currentUser?.id
+                    )
+                )
                     .tabItem {
                         Text("Months")
                     }
@@ -47,6 +52,6 @@ struct ReportsView: View {
 }
 
 #Preview {
-    ReportsView()
+    ReportsTabView()
         .environmentObject(AppState())
 }

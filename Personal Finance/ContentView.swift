@@ -10,15 +10,14 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject private var authManager: AuthenticationManager
-    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
-        Group {
+        VStack {
             switch appState.currentView {
             case .splashScreen:
                 SplashScreen()
             case .list:
-                ReportsView()
+                ReportsTabView()
             case .profile:
                 ProfileView()
             case .signIn:
@@ -47,9 +46,6 @@ struct ContentView: View {
                     }
                 }
             }
-        }
-        .onAppear {
-            authManager.setContext(modelContext)
         }
         .frame(
             maxWidth: .infinity,

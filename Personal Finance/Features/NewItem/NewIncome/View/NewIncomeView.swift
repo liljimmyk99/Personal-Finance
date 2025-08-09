@@ -8,6 +8,7 @@ import SwiftUI
 
 struct NewIncomeView: View {
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject var viewModel: NewIncomeViewModel
     @State var source: String = ""
     @State var date: Date = Date()
     @State var grossAmount: Double = 0.0
@@ -30,17 +31,16 @@ struct NewIncomeView: View {
             }
             .padding()
             
+            // TODO: Add AuthManager/AppState to get current signedIn User
             PFButton(text: "Submit") {
-                let income = Income(
-                    date: date,
-                    source: source,
-                    grossAmount: grossAmount,
-                    grossTaxableAmount: grossTaxableAmount,
-                    netAmount: netAmount,
-                    lastUpdated: Date()
-                )
-                print("Created new Income: \(income)")
-                dismiss()
+                do {
+                   let income = try viewModel.createIncome()
+                    dismiss()
+                    print("Created new Transaction: \(income)")
+                } catch {
+                    print("Error submitting transaction: \(error)")
+                }
+
             }
             .padding(.bottom)
         }
@@ -51,5 +51,7 @@ struct NewIncomeView: View {
 }
 
 #Preview{
-    NewIncomeView()
+    NewIncomeView(
+        viewModel: NewIncomeViewModel(customerID: Int64())
+    )
 }
