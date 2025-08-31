@@ -45,7 +45,10 @@ struct SignUpView: View {
                 validationRules: viewModel.confirmPasswordValidation
             )
             
-            PFButton(text: "Create Account") {
+            PFButton(
+                text: "Create Account",
+                isDisabled: (viewModel.isSignUpDataValid == false)
+            ) {
                 do {
                     if verifyFormCompletion() && verifyPasswordMatch() {
                         try authManager.signUp(firstName: viewModel.firstName, lastName: viewModel.lastName, email: viewModel.email, password: viewModel.password, phoneNumber: viewModel.phoneNumber)

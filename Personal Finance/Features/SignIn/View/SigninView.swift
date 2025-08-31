@@ -27,7 +27,10 @@ struct SignInView: View {
                 label: "Password",
                 validationRules: authManager.passwordValidation
             )
-            PFButton(text: "Sign-In") {
+            PFButton(
+                text: "Sign-In",
+                isDisabled: authManager.isSignInDataValid == false
+            ) {
                 do {
                     try authManager.signIn(email: email, password: password)
                     appState.currentView = .list
