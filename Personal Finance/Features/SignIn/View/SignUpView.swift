@@ -8,28 +8,47 @@ import SwiftUI
 
 struct SignUpView: View {
     @EnvironmentObject private var authManager: AuthenticationManager
+    @ObservedObject private var viewModel: SignUpViewModel = SignUpViewModel()
     @EnvironmentObject var appState: AppState
-    @State private var firstName: String = ""
-    @State private var lastName: String = ""
-    @State private var phoneNumber: String = ""
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var confirmPassword: String = ""
     @State private var errorMessage: String?
     
     var body: some View {
         ScrollView {
-            TextInput(text: $firstName, label: "First Name")
-            TextInput(text: $lastName, label: "Last Name")
-            TextInput(text: $phoneNumber, label: "Phone Number")
-            TextInput(text: $email, label: "Email")
-            TextInput(text: $password, label: "Password")
-            TextInput(text: $confirmPassword, label: "Confirm Password")
+            TextInput(
+                text: $viewModel.firstName,
+                label: "First Name",
+                validationRules: viewModel.firstNameValidation
+            )
+            TextInput(
+                text: $viewModel.lastName,
+                label: "Last Name",
+                validationRules: viewModel.lastNameValidation
+            )
+            TextInput(
+                text: $viewModel.phoneNumber,
+                label: "Phone Number",
+                validationRules: viewModel.phoneNumberValidation
+            )
+            TextInput(
+                text: $viewModel.email,
+                label: "Email",
+                validationRules: viewModel.emailValidation
+            )
+            TextInput(
+                text: $viewModel.password,
+                label: "Password",
+                validationRules: viewModel.passwordValidation
+            )
+            TextInput(
+                text: $viewModel.confirmPassword,
+                label: "Confirm Password",
+                validationRules: viewModel.confirmPasswordValidation
+            )
             
             PFButton(text: "Create Account") {
                 do {
                     if verifyFormCompletion() && verifyPasswordMatch() {
-                       try authManager.signUp(firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
+                        try authManager.signUp(firstName: viewModel.firstName, lastName: viewModel.lastName, email: viewModel.email, password: viewModel.password, phoneNumber: viewModel.phoneNumber)
                         appState.currentView = .list
                         appState.currentUser = authManager.currentUser
                         
@@ -50,11 +69,11 @@ struct SignUpView: View {
     }
     
     func verifyPasswordMatch() -> Bool {
-        return password == confirmPassword
+        return viewModel.password == viewModel.confirmPassword
     }
     
     func verifyFormCompletion() -> Bool {
-        return !firstName.isEmpty && !lastName.isEmpty && !phoneNumber.isEmpty && !password.isEmpty && verifyPasswordMatch()
+        return !viewModel.firstName.isEmpty && !viewModel.lastName.isEmpty && !viewModel.phoneNumber.isEmpty && !viewModel.password.isEmpty && verifyPasswordMatch()
     }
 }
 

@@ -25,6 +25,12 @@ struct CategoryView: View {
             }
             .padding()
             .background(PFColors.background)
+            .onChange(of: appState.isMainWindowInFocus, {_, newValue in
+                // Only refresh when in Focus
+                if newValue {
+                    viewModel.fetchAllTransactionsByCategory()
+                }
+            })
         }
     }
     

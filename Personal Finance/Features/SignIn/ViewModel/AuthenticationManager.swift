@@ -70,4 +70,31 @@ class AuthenticationManager: ObservableObject {
             return hashed.compactMap { String(format: "%02x", $0) }.joined()
     }
     
+    // TODO: Merge with SignUpViewModel
+    func emailValidation(text: String, isEditting: Bool) -> InputFieldValidation {
+        let pattern = #"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$"#
+
+        if (text.range(of: pattern, options: [.regularExpression, .caseInsensitive]) != nil) {
+            return .success
+        } else {
+            return .failure(error: "Ensure email follows correct format: example@example.com")
+        }
+
+    }
+    
+    // TODO: Merge with SignUpViewModel
+    func passwordValidation(text: String, isEditting: Bool) -> InputFieldValidation {
+        let passwordLengthRequirement: Int = 8
+        
+        if text.count <= passwordLengthRequirement {
+            return .failure(error: "Password must be at least 8 characters long")
+        }
+        
+        if text.contains(where: {$0.isPunctuation}) == false {
+            return .failure(error: "Password must contain at least one punctuation mark")
+        }
+        
+        return .success
+    }
+    
 }

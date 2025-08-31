@@ -14,12 +14,12 @@ struct SelectInput<T: CaseIterable & RawRepresentable & Hashable>: View where T.
     let placeholder: String? = nil
     
     var body: some View {
-        InputFieldTemplate(label: label) {
+        InputFieldTemplate(inputState: .constant(.normal), label: label) {
                 Button{
                     showOptions = true
                 } label : {
                     
-                InputFieldBox(isInFocus: showOptions) {
+                InputFieldBox(inputState: .constant(.normal),isInFocus: showOptions) {
                         Text(option.rawValue)
                             .font(.title2)
                 }

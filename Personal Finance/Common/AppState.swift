@@ -35,5 +35,5 @@ class AppState: ObservableObject {
     
     @Published var currentUser: User? = nil
     @Published var currentView: ViewType = .splashScreen
-    @Published var isAddExpensePresented: Bool = false
+    @Published var isMainWindowInFocus: Bool = false
 }

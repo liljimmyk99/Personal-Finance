@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct InputFieldTemplate<Content: View>: View {
+    @Binding var inputState: InputFieldState
     let label: String
     var content: () -> Content
     
@@ -22,6 +23,17 @@ struct InputFieldTemplate<Content: View>: View {
             }
             
            content()
+            
+            if case .error(let error) = inputState {
+                HStack {
+                    Text(error)
+                        .font(.callout)
+                        .foregroundColor(PFColors.destructiveButton)
+                    
+                    Spacer()
+                }
+            }
+            
         }
         .padding()
     }

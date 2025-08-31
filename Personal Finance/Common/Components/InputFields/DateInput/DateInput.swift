@@ -14,11 +14,11 @@ struct DateInput: View {
     let placeholder: String? = nil
     
     var body: some View {
-        InputFieldTemplate(label: label) {
+        InputFieldTemplate(inputState: .constant(.normal), label: label) {
                 Button{
                     showDatePicker = true
                 } label : {
-                InputFieldBox(isInFocus: showDatePicker) {
+                InputFieldBox(inputState: .constant(.normal),isInFocus: showDatePicker) {
                     Text(date.formatted(.dateTime.month(.wide).day().year()))
                         .font(.title2)
                 }

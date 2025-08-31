@@ -8,17 +8,30 @@ import SwiftUI
 
 struct TextInput: View {
     @FocusState private var isInFocus: Bool
+    @State private var textFieldState: InputFieldState = .normal
     @Binding var text: String
     let label: String
     let placeholder: String? = nil
+    let validationRules: ((String, Bool) -> InputFieldValidation)?
     
     var body: some View {
-        InputFieldTemplate(label: label) {
-            InputFieldBox(isInFocus: isInFocus) {
+        InputFieldTemplate(inputState: $textFieldState, label: label) {
+            InputFieldBox(inputState: $textFieldState, isInFocus: isInFocus) {
                 TextField(placeholder ?? "", text: $text)
                     .textFieldStyle(.plain)
                     .font(.title2)
                     .focused($isInFocus)
+                    .onChange(of: text, { _, newValue in
+                        if let validationRules = validationRules {
+                            let result = validationRules(text, isInFocus)
+                            switch result {
+                                case .success:
+                                    textFieldState = .normal
+                                case .failure(error: let error):
+                                    textFieldState = .error(error: error)
+                            }
+                        }
+                    })
             }
         }
     }
@@ -26,5 +39,12 @@ struct TextInput: View {
 
 #Preview {
     @Previewable @State var text = ""
-    TextInput(text: $text, label: "Some Label")
+    TextInput(text: $text, label: "Some Label") { text, inFocus in
+        if text.contains(where: {$0.isNumber}) {
+            return InputFieldValidation.success
+        } else {
+            return InputFieldValidation.failure(error: "Provide numbers only")
+        }
+        
+    }
 }

@@ -17,8 +17,16 @@ struct SignInView: View {
     
     var body: some View {
         VStack {
-            TextInput(text: $email, label: "Email")
-            SecureInput(text: $password, label: "Password")
+            TextInput(
+                text: $email,
+                label: "Email",
+                validationRules: authManager.emailValidation
+            )
+            SecureInput(
+                text: $password,
+                label: "Password",
+                validationRules: authManager.passwordValidation
+            )
             PFButton(text: "Sign-In") {
                 do {
                     try authManager.signIn(email: email, password: password)

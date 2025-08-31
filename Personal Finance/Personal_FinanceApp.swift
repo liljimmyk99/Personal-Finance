@@ -27,6 +27,12 @@ struct Personal_FinanceApp: App {
                 )
             )
             .environmentObject(appState)
+            .onAppear() {
+                appState.isMainWindowInFocus = false
+            }
+            .onDisappear() {
+                appState.isMainWindowInFocus = true
+            }
         }
         
         WindowGroup(id: "new-item") {
@@ -38,6 +44,12 @@ struct Personal_FinanceApp: App {
                     maxHeight: .infinity
                 )
                 .environmentObject(appState)
+                .onAppear() {
+                    appState.isMainWindowInFocus = false
+                }
+                .onDisappear() {
+                    appState.isMainWindowInFocus = true
+                }
         }
     }
 }
