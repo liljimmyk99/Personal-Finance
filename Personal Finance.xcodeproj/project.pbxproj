@@ -10,7 +10,9 @@
 		C709C85F2E35A70C0094BC6D /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C709C85E2E35A7060094BC6D /* CategoryViewModel.swift */; };
 		C74A87882E2DC1F4005233BF /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = C74A87872E2DC1F4005233BF /* GRDB */; };
 		C74A878D2E2DC506005233BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74A878C2E2DC506005233BF /* User.swift */; };
+		C78202C22E47F72A00F8F77B /* InputFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78202C12E47F71F00F8F77B /* InputFieldValidation.swift */; };
 		C799E8372E403B4A0023F634 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C799E8362E403B430023F634 /* CalendarHeader.swift */; };
+		C7CA351C2E4D686C000AEFCF /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CA351B2E4D6864000AEFCF /* SignUpViewModel.swift */; };
 		C7D126112E24B6790021F2DC /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D126102E24B6750021F2DC /* AuthenticationManager.swift */; };
 		C7D126132E254C330021F2DC /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D126122E254C330021F2DC /* SignInView.swift */; };
 		C7D126162E254C7F0021F2DC /* SecureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D126142E254C7F0021F2DC /* SecureInput.swift */; };
@@ -50,7 +52,9 @@
 		C709C85E2E35A7060094BC6D /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		C74A878C2E2DC506005233BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C75A04D12C7C0B9900739285 /* Personal Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personal Finance.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C78202C12E47F71F00F8F77B /* InputFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldValidation.swift; sourceTree = "<group>"; };
 		C799E8362E403B430023F634 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
+		C7CA351B2E4D6864000AEFCF /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		C7D126102E24B6750021F2DC /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		C7D126122E254C330021F2DC /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		C7D126142E254C7F0021F2DC /* SecureInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInput.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		C7FED02D2E24B29600738F30 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C78202C12E47F71F00F8F77B /* InputFieldValidation.swift */,
 				C7FED02B2E24B29600738F30 /* InputFieldBox.swift */,
 				C7FED02C2E24B29600738F30 /* InputFieldTemplate.swift */,
 			);
@@ -377,6 +382,7 @@
 		C7FED0572E24B29600738F30 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C7CA351B2E4D6864000AEFCF /* SignUpViewModel.swift */,
 				C7D126102E24B6750021F2DC /* AuthenticationManager.swift */,
 			);
 			path = ViewModel;
@@ -507,6 +513,7 @@
 				C7FED0672E24B29600738F30 /* CalendarDay.swift in Sources */,
 				C709C85F2E35A70C0094BC6D /* CategoryViewModel.swift in Sources */,
 				C7FED0682E24B29600738F30 /* FilledButtonStyle.swift in Sources */,
+				C78202C22E47F72A00F8F77B /* InputFieldValidation.swift in Sources */,
 				C7FED0692E24B29600738F30 /* InputFieldBox.swift in Sources */,
 				C7FED06A2E24B29600738F30 /* MonthsView.swift in Sources */,
 				C7FED06B2E24B29600738F30 /* CalendarWeek.swift in Sources */,
@@ -528,6 +535,7 @@
 				C7FED07C2E24B29600738F30 /* ProfileView.swift in Sources */,
 				C7FED07D2E24B29600738F30 /* ContentView.swift in Sources */,
 				C7FED07E2E24B29600738F30 /* NotImplementedView.swift in Sources */,
+				C7CA351C2E4D686C000AEFCF /* SignUpViewModel.swift in Sources */,
 				C7FED0802E24B29600738F30 /* Personal_FinanceApp.swift in Sources */,
 				C7D126162E254C7F0021F2DC /* SecureInput.swift in Sources */,
 				C7D126112E24B6790021F2DC /* AuthenticationManager.swift in Sources */,

@@ -8,8 +8,8 @@ import AppKit
 import SwiftUI
 
 struct MonthsView: View {
-    @State private var isFocused: Bool = false
     @Environment(\.openWindow) private var openWindow
+    @EnvironmentObject var appState: AppState
     @ObservedObject var viewModel: MonthsViewModel
     @State private var sortOrder: [KeyPathComparator<Transaction>] = [
         .init(\.date, order: .reverse),
@@ -33,20 +33,11 @@ struct MonthsView: View {
             )
             
         }
-        .onReceive(
-            NotificationCenter.default.publisher(
-                for: NSWindow.didBecomeKeyNotification
-            )
-        ) { _ in
-            isFocused = NSApp.keyWindow == NSApp.mainWindow
-        }
-        .onReceive(
-            NotificationCenter.default.publisher(
-                for: NSWindow.didResignKeyNotification
-            )
-        ) { _ in
-            isFocused = false
-        }
+        .onChange(of: appState.isMainWindowInFocus, {_ , newValue in
+            if newValue {
+                viewModel.updateTransactions(selectedMonth)
+            }
+        })
         .onChange(of: selectedMonth) {
             viewModel.updateTransactions(selectedMonth)
         }

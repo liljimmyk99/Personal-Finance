@@ -12,7 +12,7 @@ struct EditTransactionView: View {
     
     var body: some View {
         VStack {
-            TextInput(text: $viewModel.store, label: "Store")
+            TextInput(text: $viewModel.store, label: "Store", validationRules: nil)
             
             DateInput(date: $viewModel.date, label: "Transaction Date")
         

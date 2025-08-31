@@ -7,16 +7,27 @@
 import SwiftUI
 
 struct InputFieldBox<Content: View>: View {
+    @Binding var inputState: InputFieldState
     let isInFocus: Bool
     let content: () -> Content
+    
+    var backgroundColor: Color {
+        isInFocus ? PFColors.textFieldActive : PFColors.textFieldStatic
+    }
+    
+    var borderColor: Color {
+        if inputState != .normal {
+            return PFColors.destructiveButton
+        }
+        
+        return isInFocus ? PFColors.primary : Color.clear
+    }
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 4)
-                .stroke(
-                    isInFocus ? PFColors.primary : Color.clear,
-                    lineWidth: 5)
-                .background(isInFocus ? PFColors.textFieldActive : PFColors.textFieldStatic)
+                .stroke(borderColor, lineWidth: 5)
+                .background(backgroundColor)
             
             HStack {
                 content()

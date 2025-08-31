@@ -10,7 +10,7 @@ class EditTransactionViewModel: ObservableObject {
     @Published var store: String
     @Published var date: Date
     @Published var category: CategoryType
-    @Published var amount: Double
+    @Published var amount: String
     private var transactionID: Int64?
     private var customerID: Int64
     private var database: AppDatabase = .shared
@@ -19,7 +19,7 @@ class EditTransactionViewModel: ObservableObject {
         self.store = ""
         self.date = Date()
         self.category = .other
-        self.amount = 0.0
+        self.amount = "0.00"
         self.customerID = customerID ?? Int64()
     }
     
@@ -28,7 +28,7 @@ class EditTransactionViewModel: ObservableObject {
             self.store = ""
             self.date = Date()
             self.category = .other
-            self.amount = 0.0
+            self.amount = "0.00"
             self.transactionID =  Int64()
             self.customerID = Int64()
             
@@ -38,18 +38,19 @@ class EditTransactionViewModel: ObservableObject {
         self.store = transaction.store
         self.date = transaction.date
         self.category = transaction.category
-        self.amount = transaction.amount
+        self.amount = String(transaction.amount)
         self.transactionID = transaction.id
         self.customerID = customerID ?? Int64()
     }
     
     func createTransaction() throws -> Transaction {
+        let formattedAmount = Double(amount) ?? 0.0
         var transaction = Transaction(
             id: transactionID,
             userID: customerID,
             date: date,
             store: store,
-            amount: amount,
+            amount: formattedAmount,
             category: category,
             lastUpdated: Date()
         )
