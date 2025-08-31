@@ -4,7 +4,7 @@
 //
 //  Created by Jimmy Kane on 8/13/25.
 //
-
+import Combine
 import Foundation
 
 class SignUpViewModel: ObservableObject {
@@ -16,12 +16,30 @@ class SignUpViewModel: ObservableObject {
     @Published var confirmPassword: String = ""
     @Published var errorMessage: String?
     @Published var isSignUpDataValid: Bool = false
-    var isFirstNameValid: Bool = false
-    var isLastNameValid: Bool = false
-    var isPhoneNumberValid: Bool = false
-    var isEmailValid: Bool = false
-    var isPasswordValid: Bool = false
-    var isConfirmPasswordValid: Bool = false
+    
+    @Published private(set) var isFirstNameValid: Bool = false
+    @Published private(set) var isLastNameValid: Bool = false
+    @Published private(set) var isPhoneNumberValid: Bool = false
+    @Published private(set) var isEmailValid: Bool = false
+    @Published private(set) var isPasswordValid: Bool = false
+    @Published private(set) var isConfirmPasswordValid: Bool = false
+    
+    init() {
+        Publishers.CombineLatest3(
+            Publishers.CombineLatest3($isFirstNameValid, $isLastNameValid, $isPhoneNumberValid),
+            Publishers.CombineLatest3($isEmailValid, $isPasswordValid, $isConfirmPasswordValid),
+            $errorMessage
+        )
+        .map { group1, group2, error in
+            let (firstValid, lastValid, phoneValid) = group1
+            let (emailValid, passwordValid, confirmValid) = group2
+            return error == nil &&
+                firstValid && lastValid &&
+                phoneValid && emailValid &&
+                passwordValid && confirmValid
+        }
+        .assign(to: &$isSignUpDataValid)
+    }
     
     func firstNameValidation(text: String, isEditting: Bool) -> InputFieldValidation {
         if text.rangeOfCharacter(from: .decimalDigits) != nil {

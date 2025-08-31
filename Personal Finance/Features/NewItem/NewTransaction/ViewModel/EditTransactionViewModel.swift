@@ -4,6 +4,7 @@
 //
 //  Created by Jimmy Kane on 7/26/25.
 //
+import Combine
 import Foundation
 
 class EditTransactionViewModel: ObservableObject {
@@ -11,6 +12,7 @@ class EditTransactionViewModel: ObservableObject {
     @Published var date: Date
     @Published var category: CategoryType
     @Published var amount: String
+    @Published var isTransactionValid: Bool = false
     private var transactionID: Int64?
     private var customerID: Int64
     private var database: AppDatabase = .shared
@@ -21,6 +23,16 @@ class EditTransactionViewModel: ObservableObject {
         self.category = .other
         self.amount = "0.00"
         self.customerID = customerID ?? Int64()
+        
+        Publishers.CombineLatest($store, $amount)
+            .map { store, amount in
+                if store == "" || amount == "$0.00" {
+                    return false
+                } else {
+                    return true
+                }
+            }
+            .assign(to: &$isTransactionValid)
     }
     
     init(transaction: Transaction?, customerID: Int64?) {

@@ -4,6 +4,7 @@
 //
 //  Created by Jimmy Kane on 7/27/25.
 //
+import Combine
 import Foundation
 
 class NewIncomeViewModel: ObservableObject {

@@ -4,6 +4,7 @@
 //
 //  Created by Jimmy Kane on 7/13/25.
 //
+import Combine
 import CryptoKit
 import SwiftData
 import SwiftUI
@@ -11,7 +12,29 @@ import SwiftUI
 class AuthenticationManager: ObservableObject {
     @Published var currentUser: User?
     @Published var isSignedin: Bool = false
+    @Published private(set) var isEmailValid: Bool = false
+    @Published private(set) var isPasswordValid: Bool = false
+    @Published var isSignInDataValid: Bool = false
+    
     private let database = AppDatabase.shared
+    
+    init() {
+        // Allows for short credentials for QA to be used
+        #if !DEBUG
+        Publishers.CombineLatest(
+            $isEmailValid,
+            $isPasswordValid
+        )
+        .map { group in
+            let (isEmailValid, isPasswordValid) = group
+            return isEmailValid && isPasswordValid
+        }
+        .assign(to: &$isSignInDataValid)
+        
+        #else
+            isSignInDataValid = true
+        #endif
+    }
     
     func signUp(
         firstName: String,
@@ -32,15 +55,11 @@ class AuthenticationManager: ObservableObject {
             passwordHash: passwordHash
         )
         
-        print ("Before UserID: \(user.id)")
         do {
             try AppDatabase.shared.saveUser(&user)
         } catch {
             fatalError(error.localizedDescription)
         }
-        
-        print ("After UserID: \(user.id!)")
-        
         
         currentUser = user
         isSignedin = true
@@ -75,8 +94,10 @@ class AuthenticationManager: ObservableObject {
         let pattern = #"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$"#
 
         if (text.range(of: pattern, options: [.regularExpression, .caseInsensitive]) != nil) {
+            isEmailValid = true
             return .success
         } else {
+            isEmailValid = false
             return .failure(error: "Ensure email follows correct format: example@example.com")
         }
 
@@ -87,13 +108,16 @@ class AuthenticationManager: ObservableObject {
         let passwordLengthRequirement: Int = 8
         
         if text.count <= passwordLengthRequirement {
+            isPasswordValid = false
             return .failure(error: "Password must be at least 8 characters long")
         }
         
         if text.contains(where: {$0.isPunctuation}) == false {
+            isPasswordValid = false
             return .failure(error: "Password must contain at least one punctuation mark")
         }
         
+        isPasswordValid = true
         return .success
     }
     

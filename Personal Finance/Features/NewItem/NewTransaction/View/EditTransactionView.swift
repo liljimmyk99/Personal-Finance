@@ -24,12 +24,13 @@ struct EditTransactionView: View {
                 label: "Category"
             ).padding(.bottom)
             
-            // TODO: Add AuthManager/AppState to get current signedIn User
-            PFButton(text: "Submit") {
+            PFButton(
+                text: "Submit",
+                isDisabled: viewModel.isTransactionValid == false
+            ) {
                 do {
-                   let transaction = try viewModel.createTransaction()
-                    dismiss()
-                    print("Created new Transaction: \(transaction)")
+                   _ = try viewModel.createTransaction()
+                   dismiss()
                 } catch {
                     print("Error submitting transaction: \(error)")
                 }
