@@ -9,6 +9,8 @@ import Foundation
 
 class MonthsViewModel: ObservableObject {
     @Published var transactions: [Transaction] = []
+    @Published var numTransactions: Int = 0
+    @Published var totalSpent: Double = 0.0
     private var customerID: Int64
     private var database: AppDatabase = .shared
     
@@ -57,5 +59,11 @@ class MonthsViewModel: ObservableObject {
     func updateTransactions(_ date: Date) {
         let (month, year) = getMonthAndYear(date: date)
         self.transactions = fetchAllTransactionsByMonth(month: month, year: year)
+        updateHeader()
+    }
+    
+    private func updateHeader() {
+        self.numTransactions = transactions.count
+        self.totalSpent = transactions.reduce(0) { $0 + $1.amount }
     }
 }

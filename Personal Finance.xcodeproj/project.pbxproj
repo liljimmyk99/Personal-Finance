@@ -11,7 +11,8 @@
 		C74A87882E2DC1F4005233BF /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = C74A87872E2DC1F4005233BF /* GRDB */; };
 		C74A878D2E2DC506005233BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74A878C2E2DC506005233BF /* User.swift */; };
 		C78202C22E47F72A00F8F77B /* InputFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78202C12E47F71F00F8F77B /* InputFieldValidation.swift */; };
-		C799E8372E403B4A0023F634 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C799E8362E403B430023F634 /* CalendarHeader.swift */; };
+		C79C95EF2E652388003BFFF6 /* TransactionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C95ED2E652388003BFFF6 /* TransactionInfo.swift */; };
+		C79C95F02E652388003BFFF6 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C95EC2E652388003BFFF6 /* CalendarHeader.swift */; };
 		C7CA351C2E4D686C000AEFCF /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CA351B2E4D6864000AEFCF /* SignUpViewModel.swift */; };
 		C7D126112E24B6790021F2DC /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D126102E24B6750021F2DC /* AuthenticationManager.swift */; };
 		C7D126132E254C330021F2DC /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D126122E254C330021F2DC /* SignInView.swift */; };
@@ -53,7 +54,8 @@
 		C74A878C2E2DC506005233BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C75A04D12C7C0B9900739285 /* Personal Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personal Finance.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78202C12E47F71F00F8F77B /* InputFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldValidation.swift; sourceTree = "<group>"; };
-		C799E8362E403B430023F634 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
+		C79C95EC2E652388003BFFF6 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
+		C79C95ED2E652388003BFFF6 /* TransactionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfo.swift; sourceTree = "<group>"; };
 		C7CA351B2E4D6864000AEFCF /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		C7D126102E24B6750021F2DC /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		C7D126122E254C330021F2DC /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -128,10 +130,19 @@
 		C799E8352E403B3B0023F634 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C79C95EE2E652388003BFFF6 /* Header */,
 				C799E83A2E4040BA0023F634 /* TransactionList */,
-				C799E8362E403B430023F634 /* CalendarHeader.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		C79C95EE2E652388003BFFF6 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				C79C95EC2E652388003BFFF6 /* CalendarHeader.swift */,
+				C79C95ED2E652388003BFFF6 /* TransactionInfo.swift */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 		C7D126152E254C7F0021F2DC /* SecureInput */ = {
@@ -509,6 +520,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7FED0652E24B29600738F30 /* TextInput.swift in Sources */,
+				C79C95EF2E652388003BFFF6 /* TransactionInfo.swift in Sources */,
+				C79C95F02E652388003BFFF6 /* CalendarHeader.swift in Sources */,
 				C7FED0662E24B29600738F30 /* AppState.swift in Sources */,
 				C7FED0672E24B29600738F30 /* CalendarDay.swift in Sources */,
 				C709C85F2E35A70C0094BC6D /* CategoryViewModel.swift in Sources */,
@@ -531,7 +544,6 @@
 				C7FED0792E24B29600738F30 /* ReportsTabView.swift in Sources */,
 				C7D126182E254E210021F2DC /* SignUpView.swift in Sources */,
 				C7FED07B2E24B29600738F30 /* InputFieldTemplate.swift in Sources */,
-				C799E8372E403B4A0023F634 /* CalendarHeader.swift in Sources */,
 				C7FED07C2E24B29600738F30 /* ProfileView.swift in Sources */,
 				C7FED07D2E24B29600738F30 /* ContentView.swift in Sources */,
 				C7FED07E2E24B29600738F30 /* NotImplementedView.swift in Sources */,
