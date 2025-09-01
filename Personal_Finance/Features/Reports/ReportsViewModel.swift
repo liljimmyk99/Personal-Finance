@@ -8,11 +8,11 @@ import Foundation
 
 class ReportsViewModel: ObservableObject {
     private var database: AppDatabase
-    private var customerID: UUID
+    private var customerID: Int64
     
-    init (dataBase: AppDatabase, customerID: UUID?) {
+    init (dataBase: AppDatabase, customerID: Int64?) {
         self.database = dataBase
-        self.customerID = customerID ?? UUID()
+        self.customerID = customerID ?? Int64()
     }
     
     func getTransactionsForUser() -> [Transaction] {
