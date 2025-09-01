@@ -18,7 +18,11 @@ struct MonthsView: View {
 
     var body: some View {
         VStack {
-            CalendarHeader(selectedMonth: $selectedMonth)
+            CalendarHeader(
+                selectedMonth: $selectedMonth,
+                numTransactions: $viewModel.numTransactions,
+                totalSpent: $viewModel.totalSpent
+            )
             
             TransactionList(
                 transactions: viewModel.transactions,
