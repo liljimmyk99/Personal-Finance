@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PFButton: View {
     let text: String
-    
+
     let isDisabled: Bool
 
     let type: PFButtonType

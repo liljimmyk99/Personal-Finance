@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Personal_FinanceApp: App {
     @StateObject var appState = AppState()
-    @StateObject var authManager: AuthenticationManager = AuthenticationManager()
+    @StateObject var authManager: AuthenticationManager = .init()
 
     var body: some Scene {
         WindowGroup {
@@ -18,7 +18,7 @@ struct Personal_FinanceApp: App {
                 .environmentObject(appState)
                 .environmentObject(authManager)
         }
-        
+
         WindowGroup(for: Transaction.self) { $transaction in
             EditTransactionView(
                 viewModel: EditTransactionViewModel(
@@ -27,14 +27,25 @@ struct Personal_FinanceApp: App {
                 )
             )
             .environmentObject(appState)
-            .onAppear() {
+            .onAppear {
                 appState.isMainWindowInFocus = false
             }
-            .onDisappear() {
+            .onDisappear {
                 appState.isMainWindowInFocus = true
             }
         }
         
+        WindowGroup(for: Transactions.self) { $transactions in
+            ItemsForDay(transactions: transactions)
+            .environmentObject(appState)
+            .onAppear {
+                appState.isMainWindowInFocus = false
+            }
+            .onDisappear {
+                appState.isMainWindowInFocus = true
+            }
+        }
+
         WindowGroup(id: "new-item") {
             NewItemView()
                 .frame(
@@ -44,10 +55,10 @@ struct Personal_FinanceApp: App {
                     maxHeight: .infinity
                 )
                 .environmentObject(appState)
-                .onAppear() {
+                .onAppear {
                     appState.isMainWindowInFocus = false
                 }
-                .onDisappear() {
+                .onDisappear {
                     appState.isMainWindowInFocus = true
                 }
         }

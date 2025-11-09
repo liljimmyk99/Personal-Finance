@@ -10,30 +10,29 @@ struct InputFieldTemplate<Content: View>: View {
     @Binding var inputState: InputFieldState
     let label: String
     var content: () -> Content
-    
+
     var body: some View {
-        VStack{
+        VStack {
             HStack {
                 Text(label)
                     .font(.headline)
                     .foregroundStyle(PFColors.headingText)
                     .padding(.bottom, 5)
-            
+
                 Spacer()
             }
-            
-           content()
-            
-            if case .error(let error) = inputState {
+
+            content()
+
+            if case let .error(error) = inputState {
                 HStack {
                     Text(error)
                         .font(.callout)
                         .foregroundColor(PFColors.destructiveButton)
-                    
+
                     Spacer()
                 }
             }
-            
         }
         .padding()
     }

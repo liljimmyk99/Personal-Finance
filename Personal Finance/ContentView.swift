@@ -30,7 +30,7 @@ struct ContentView: View {
         }
         .toolbar {
             if authManager.isSignedin {
-            ToolbarItem() {
+                ToolbarItem {
                     Menu {
                         Button("Profile") {
                             appState.currentView = .profile

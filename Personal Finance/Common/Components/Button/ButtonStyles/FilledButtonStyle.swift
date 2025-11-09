@@ -14,7 +14,7 @@ struct FilledButtonStyle: ButtonStyle {
         if isDisabled {
             return PFColors.textFieldDisabled
         }
-        
+
         return if isDestructive {
             isPressed ? PFColors.destructiveButton.opacity(0.7) : PFColors.destructiveButton
         } else {

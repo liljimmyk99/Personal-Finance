@@ -6,8 +6,9 @@
 //
 
 // MARK: - Database Access: User Reads
-import GRDB
+
 import Foundation
+import GRDB
 
 extension AppDatabase {
     func getUser(id: Int64) throws -> User {
@@ -15,7 +16,7 @@ extension AppDatabase {
             try User.fetchOne(db, key: id)!
         }
     }
-    
+
     func getUserByEmail(_ email: String) throws -> User {
         try reader.read { db in
             try User
@@ -23,7 +24,7 @@ extension AppDatabase {
                 .fetchOne(db)!
         }
     }
-    
+
     func getAllUsers() throws -> [User] {
         try reader.read { db in
             try User.fetchAll(db)

@@ -6,8 +6,9 @@
 //
 
 // MARK: - Database Access: Transaction Reads
-import GRDB
+
 import Foundation
+import GRDB
 
 extension AppDatabase {
     func getTransaction(id: Int64) throws -> Transaction {
@@ -15,7 +16,7 @@ extension AppDatabase {
             try Transaction.fetchOne(db, key: id)!
         }
     }
-    
+
     func getAllTranactionsForUser(userID: Int64) throws -> [Transaction] {
         try reader.read { db in
             try Transaction
@@ -26,7 +27,7 @@ extension AppDatabase {
                 })
         }
     }
-    
+
     func getAllTranactionsForUserAndInterval(userID: Int64, month: Int, year: Int) throws -> [Transaction] {
         let calendar = Calendar.current
         var components = DateComponents()
@@ -35,49 +36,50 @@ extension AppDatabase {
         components.day = 1
 
         guard let startDate = calendar.date(from: components),
-              let endDate = calendar.date(byAdding: .month, value: 1, to: startDate) else {
+              let endDate = calendar.date(byAdding: .month, value: 1, to: startDate)
+        else {
             return []
         }
-        
+
         return try reader.read { db in
             try Transaction
                 .filter(
                     Column("userID") == userID &&
-                    Column("date") >= startDate &&
-                    Column("date") < endDate
+                        Column("date") >= startDate &&
+                        Column("date") < endDate
                 )
                 .fetchAll(db)
         }
     }
-    
+
     func getAllTranactionsForUserAndCategory(userID: Int64, category: CategoryType) throws -> [Transaction] {
         try reader.read { db in
             try Transaction
                 .filter(
                     Column("userID") == userID &&
-                    Column("category") == category.rawValue
+                        Column("category") == category.rawValue
                 )
                 .fetchAll(db)
         }
     }
-    
+
     func getAllTranactionsForUserAndStore(userID: Int64, store: String) throws -> [Transaction] {
         try reader.read { db in
             try Transaction
                 .filter(
                     Column("userID") == userID &&
-                    Column("store") == store
+                        Column("store") == store
                 )
                 .fetchAll(db)
         }
     }
-    
+
     func getAllTranactionsForUserAndDate(userID: Int64, date: Date) throws -> [Transaction] {
         try reader.read { db in
             try Transaction
                 .filter(
                     Column("userID") == userID &&
-                    Column("date") == date
+                        Column("date") == date
                 )
                 .fetchAll(db)
         }

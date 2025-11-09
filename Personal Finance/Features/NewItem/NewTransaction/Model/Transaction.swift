@@ -7,6 +7,10 @@
 import Foundation
 import GRDB
 
+struct Transactions: Codable, Hashable {
+    var data: [Transaction]
+}
+
 struct Transaction: Codable, Hashable, Identifiable {
     var id: Int64?
     var userID: Int64
@@ -16,80 +20,84 @@ struct Transaction: Codable, Hashable, Identifiable {
     var category: CategoryType
     var description: String?
     var lastUpdated: Date
+    
+    func toString() -> String {
+        "\(date): \(store) - \(amount) \(category)"
+    }
 }
 
 #if DEBUG
-extension Transaction {
-    private static let dates = [
-        Date(timeIntervalSince1970: 1000),
-        Date(timeIntervalSince1970: -10),
-        Date(timeIntervalSince1970: 934),
-        Date(timeIntervalSince1970: -396),
-        Date(timeIntervalSince1970: 459222),
-        Date(timeIntervalSince1970: -2495),
-    ]
-    
-    private static let ids = [
-        Int64(1234.56),
-        Int64(7890.12),
-        Int64(3456.78),
-        Int64(9012.34),
-        Int64(5678.90),
-    ]
-    
-    private static let stores = [
-        "Applebees",
-        "Barnes & Nobles",
-        "Costco",
-        "Dunkin Donuts",
-        "Enterprise",
-        "Friendly's",
-        "Giant",
-        "Home Depot",
-        "Kroger",
-        "Lowe's",
-        "McDonald's",
-        "Macy's",
-        "Target",
-        "Walmart"
-    ]
-    
-    
-    /// Creates a new Transaction with random name and random score
-    static func makeRandom() -> Transaction {
-        Transaction(
-            userID: getRandomUserID(),
-            date: getRandomDate(),
-            store: getRandomStore(),
-            amount: getRandomAmount(),
-            category: getRandomCateogry(),
-            lastUpdated: Date()
-        )
+    extension Transaction {
+        private static let dates = [
+            Date(timeIntervalSince1970: 1000),
+            Date(timeIntervalSince1970: -10),
+            Date(timeIntervalSince1970: 934),
+            Date(timeIntervalSince1970: -396),
+            Date(timeIntervalSince1970: 459_222),
+            Date(timeIntervalSince1970: -2495),
+        ]
+
+        private static let ids = [
+            Int64(1234.56),
+            Int64(7890.12),
+            Int64(3456.78),
+            Int64(9012.34),
+            Int64(5678.90),
+        ]
+
+        private static let stores = [
+            "Applebees",
+            "Barnes & Nobles",
+            "Costco",
+            "Dunkin Donuts",
+            "Enterprise",
+            "Friendly's",
+            "Giant",
+            "Home Depot",
+            "Kroger",
+            "Lowe's",
+            "McDonald's",
+            "Macy's",
+            "Target",
+            "Walmart",
+        ]
+
+        /// Creates a new Transaction with random name and random score
+        static func makeRandom() -> Transaction {
+            Transaction(
+                userID: getRandomUserID(),
+                date: getRandomDate(),
+                store: getRandomStore(),
+                amount: getRandomAmount(),
+                category: getRandomCateogry(),
+                lastUpdated: Date()
+            )
+        }
+
+        static func getRandomUserID() -> Int64 {
+            return ids.randomElement()!
+        }
+
+        static func getRandomDate() -> Date {
+            return dates.randomElement()!
+        }
+
+        static func getRandomStore() -> String {
+            return stores.randomElement()!
+        }
+
+        static func getRandomAmount() -> Double {
+            return 10 * Double.random(in: 0 ... 1000)
+        }
+
+        static func getRandomCateogry() -> CategoryType {
+            return CategoryType.allCases.randomElement()!
+        }
     }
-    
-    static func getRandomUserID() -> Int64 {
-        return (ids.randomElement()!)
-    }
-    
-    static func getRandomDate() -> Date {
-        return dates.randomElement()!
-    }
-    
-    static func getRandomStore() -> String {
-        return stores.randomElement()!
-    }
-    
-    static func getRandomAmount() -> Double {
-        return 10 * Double.random(in: 0...1000)
-    }
-    
-    static func getRandomCateogry() -> CategoryType {
-        return CategoryType.allCases.randomElement()!
-    }
-}
 #endif
 
 // MARK: - Database
+
 extension Transaction: FetchableRecord, MutablePersistableRecord {
     // Define database columns from CodingKeys
     enum Columns {
@@ -101,7 +109,7 @@ extension Transaction: FetchableRecord, MutablePersistableRecord {
         static let category = Column(CodingKeys.category)
         static let description = Column(CodingKeys.description)
     }
-    
+
     /// Updates a Transaction id after it has been inserted in the database.
     mutating func didInsert(_ inserted: InsertionSuccess) {
         id = inserted.rowID

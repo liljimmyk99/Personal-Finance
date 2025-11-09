@@ -12,16 +12,15 @@ struct SelectInput<T: CaseIterable & RawRepresentable & Hashable>: View where T.
     let options: [T]
     let label: String
     let placeholder: String? = nil
-    
+
     var body: some View {
         InputFieldTemplate(inputState: .constant(.normal), label: label) {
-                Button{
-                    showOptions = true
-                } label : {
-                    
-                InputFieldBox(inputState: .constant(.normal),isInFocus: showOptions) {
-                        Text(option.rawValue)
-                            .font(.title2)
+            Button {
+                showOptions = true
+            } label: {
+                InputFieldBox(inputState: .constant(.normal), isInFocus: showOptions) {
+                    Text(option.rawValue)
+                        .font(.title2)
                 }
                 .buttonStyle(.plain)
                 .popover(
@@ -44,7 +43,7 @@ struct SelectInput<T: CaseIterable & RawRepresentable & Hashable>: View where T.
 
 #Preview {
     @Previewable @State var option: CategoryType = .debt
-    
+
     SelectInput(
         option: $option,
         options: CategoryType.allCases,

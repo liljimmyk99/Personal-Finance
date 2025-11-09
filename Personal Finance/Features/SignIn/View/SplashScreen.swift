@@ -23,7 +23,6 @@ struct SplashScreen: View {
                 PFButton(text: "Sign Up") {
                     appState.currentView = .signUp
                 }
-
             }
             .padding(.horizontal, 100)
         }
