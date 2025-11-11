@@ -9,10 +9,9 @@ import SwiftUI
 struct CurrencyInput: View {
     @FocusState private var isInFocus: Bool
     @State private var textFieldState: InputFieldState = .normal
-    @Binding var amount:  String
+    @Binding var amount: String
     let label: String
 
-    
     private var currencyFormatter: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -21,7 +20,7 @@ struct CurrencyInput: View {
         formatter.maximumFractionDigits = 2
         return formatter
     }
-    
+
     var body: some View {
         InputFieldTemplate(
             inputState: $textFieldState,
@@ -35,35 +34,34 @@ struct CurrencyInput: View {
                     "Amount",
                     text: $amount
                 )
-                    .textFieldStyle(.plain)
-                    .font(.title2)
-                    .focused($isInFocus)
-                    .onChange(of: amount) { _, newValue in
-                        reformatInput(newValue, isInFocus)
+                .textFieldStyle(.plain)
+                .font(.title2)
+                .focused($isInFocus)
+                .onChange(of: amount) { _, newValue in
+                    reformatInput(newValue, isInFocus)
+                }
+                .onChange(of: isInFocus) { _, newValue in
+                    if !newValue {
+                        reformatInput(amount, isInFocus)
                     }
-                    .onChange(of: isInFocus) { _, newValue in
-                        if !newValue {
-                            reformatInput(amount, isInFocus)
-                        }
-                    }
-                    .onAppear {
-                        reformatInput(amount, false)
-                    }
+                }
+                .onAppear {
+                    reformatInput(amount, false)
+                }
             }
         }
     }
-    
+
     private func reformatInput(_ newValue: String, _ isInFocus: Bool) {
-        
         if isInFocus {
             textFieldState = .normal
             return
         }
-        
+
         let clean = newValue.filter {
-            return "0123456789.".contains($0)
+            "0123456789.".contains($0)
         }
-        
+
         if let number = Double(clean) {
             amount = currencyFormatter.string(
                 from: number as NSNumber
@@ -74,13 +72,12 @@ struct CurrencyInput: View {
             textFieldState = .error(
                 error: "Invalid currency input"
             )
-            
         }
     }
 }
 
 #Preview {
-    @Previewable @State var text: String = ""
+    @Previewable @State var text = ""
     CurrencyInput(amount: $text, label: "Some Label")
     CurrencyInput(amount: .constant("0.00"), label: "Other Field")
 }

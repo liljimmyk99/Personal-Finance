@@ -12,13 +12,13 @@ struct DateInput: View {
     @Binding var date: Date
     let label: String
     let placeholder: String? = nil
-    
+
     var body: some View {
         InputFieldTemplate(inputState: .constant(.normal), label: label) {
-                Button{
-                    showDatePicker = true
-                } label : {
-                InputFieldBox(inputState: .constant(.normal),isInFocus: showDatePicker) {
+            Button {
+                showDatePicker = true
+            } label: {
+                InputFieldBox(inputState: .constant(.normal), isInFocus: showDatePicker) {
                     Text(date.formatted(.dateTime.month(.wide).day().year()))
                         .font(.title2)
                 }
@@ -43,6 +43,6 @@ struct DateInput: View {
 
 #Preview {
     @Previewable @State var date = Date()
-    
+
     DateInput(date: $date, label: "Some Label")
 }

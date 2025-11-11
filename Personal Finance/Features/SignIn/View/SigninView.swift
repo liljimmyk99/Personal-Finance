@@ -1,5 +1,5 @@
 //
-//  SignInView.swift
+//  SigninView.swift
 //  Personal Finance
 //
 //  Created by Jimmy Kane on 7/14/25.
@@ -14,7 +14,6 @@ struct SignInView: View {
     @State private var password: String = ""
     @State private var error: String?
 
-    
     var body: some View {
         VStack {
             TextInput(

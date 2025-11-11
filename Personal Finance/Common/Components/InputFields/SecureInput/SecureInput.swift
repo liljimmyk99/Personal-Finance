@@ -12,24 +12,24 @@ struct SecureInput: View {
     @Binding var text: String
     let label: String
     let validationRules: ((String, Bool) -> InputFieldValidation)?
-    
+
     var body: some View {
         InputFieldTemplate(inputState: $textFieldState, label: label) {
             InputFieldBox(inputState: $textFieldState, isInFocus: isInFocus) {
                 SecureField(text: $text) {}
                     .textFieldStyle(.plain)
                     .focused($isInFocus)
-                    .onChange(of: text, { _, newValue in
+                    .onChange(of: text) { _, _ in
                         if let validationRules = validationRules {
                             let result = validationRules(text, isInFocus)
                             switch result {
-                                case .success:
-                                    textFieldState = .normal
-                                case .failure(error: let error):
-                                    textFieldState = .error(error: error)
+                            case .success:
+                                textFieldState = .normal
+                            case let .failure(error: error):
+                                textFieldState = .error(error: error)
                             }
                         }
-                    })
+                    }
             }
         }
     }
@@ -37,8 +37,8 @@ struct SecureInput: View {
 
 #Preview {
     @Previewable @State var text = ""
-    SecureInput(text: $text, label: "Some Label", validationRules: { text, inFocus in
-        if text.contains(where: {$0.isNumber}) {
+    SecureInput(text: $text, label: "Some Label", validationRules: { text, _ in
+        if text.contains(where: { $0.isNumber }) {
             return InputFieldValidation.success
         } else {
             return InputFieldValidation.failure(error: "Not a number")

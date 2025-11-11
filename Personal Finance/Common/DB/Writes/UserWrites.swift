@@ -15,14 +15,14 @@ extension AppDatabase {
             try user.save(db)
         }
     }
-    
+
     /// Delete the specified Users
     func deleteUsers(ids: [Int64]) throws {
         try dbWriter.write { db in
             _ = try User.deleteAll(db, keys: ids)
         }
     }
-    
+
     /// Delete all Users
     func deleteAllUsers() throws {
         try dbWriter.write { db in

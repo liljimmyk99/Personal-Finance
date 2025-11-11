@@ -11,7 +11,6 @@
 		C74A87882E2DC1F4005233BF /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = C74A87872E2DC1F4005233BF /* GRDB */; };
 		C74A878D2E2DC506005233BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74A878C2E2DC506005233BF /* User.swift */; };
 		C78202C22E47F72A00F8F77B /* InputFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78202C12E47F71F00F8F77B /* InputFieldValidation.swift */; };
-		C79C95EF2E652388003BFFF6 /* TransactionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C95ED2E652388003BFFF6 /* TransactionInfo.swift */; };
 		C79C95F02E652388003BFFF6 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C95EC2E652388003BFFF6 /* CalendarHeader.swift */; };
 		C7CA351C2E4D686C000AEFCF /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CA351B2E4D6864000AEFCF /* SignUpViewModel.swift */; };
 		C7D126112E24B6790021F2DC /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D126102E24B6750021F2DC /* AuthenticationManager.swift */; };
@@ -21,12 +20,9 @@
 		C7FED0642E24B29600738F30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7FED05F2E24B29600738F30 /* Assets.xcassets */; };
 		C7FED0652E24B29600738F30 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0342E24B29600738F30 /* TextInput.swift */; };
 		C7FED0662E24B29600738F30 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0382E24B29600738F30 /* AppState.swift */; };
-		C7FED0672E24B29600738F30 /* CalendarDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0272E24B29600738F30 /* CalendarDay.swift */; };
 		C7FED0682E24B29600738F30 /* FilledButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0202E24B29600738F30 /* FilledButtonStyle.swift */; };
 		C7FED0692E24B29600738F30 /* InputFieldBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED02B2E24B29600738F30 /* InputFieldBox.swift */; };
 		C7FED06A2E24B29600738F30 /* MonthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED04E2E24B29600738F30 /* MonthsView.swift */; };
-		C7FED06B2E24B29600738F30 /* CalendarWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0292E24B29600738F30 /* CalendarWeek.swift */; };
-		C7FED06C2E24B29600738F30 /* CalendarMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0282E24B29600738F30 /* CalendarMonth.swift */; };
 		C7FED06E2E24B29600738F30 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED0552E24B29600738F30 /* SplashScreen.swift */; };
 		C7FED06F2E24B29600738F30 /* CurrencyInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED02E2E24B29600738F30 /* CurrencyInput.swift */; };
 		C7FED0702E24B29600738F30 /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FED03C2E24B29600738F30 /* NewItemView.swift */; };
@@ -55,7 +51,6 @@
 		C75A04D12C7C0B9900739285 /* Personal Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personal Finance.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78202C12E47F71F00F8F77B /* InputFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldValidation.swift; sourceTree = "<group>"; };
 		C79C95EC2E652388003BFFF6 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
-		C79C95ED2E652388003BFFF6 /* TransactionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfo.swift; sourceTree = "<group>"; };
 		C7CA351B2E4D6864000AEFCF /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		C7D126102E24B6750021F2DC /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		C7D126122E254C330021F2DC /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -67,9 +62,6 @@
 		C7FED0222E24B29600738F30 /* TextButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButtonStyle.swift; sourceTree = "<group>"; };
 		C7FED0242E24B29600738F30 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		C7FED0252E24B29600738F30 /* PFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFButton.swift; sourceTree = "<group>"; };
-		C7FED0272E24B29600738F30 /* CalendarDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDay.swift; sourceTree = "<group>"; };
-		C7FED0282E24B29600738F30 /* CalendarMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonth.swift; sourceTree = "<group>"; };
-		C7FED0292E24B29600738F30 /* CalendarWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWeek.swift; sourceTree = "<group>"; };
 		C7FED02B2E24B29600738F30 /* InputFieldBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldBox.swift; sourceTree = "<group>"; };
 		C7FED02C2E24B29600738F30 /* InputFieldTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldTemplate.swift; sourceTree = "<group>"; };
 		C7FED02E2E24B29600738F30 /* CurrencyInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyInput.swift; sourceTree = "<group>"; };
@@ -96,7 +88,11 @@
 		C709C8622E35AD400094BC6D /* NewIncome */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = NewIncome; sourceTree = "<group>"; };
 		C709C8662E35AD860094BC6D /* NewTransaction */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = NewTransaction; sourceTree = "<group>"; };
 		C74A87892E2DC39F005233BF /* DB */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DB; sourceTree = "<group>"; };
+		C765540A2E6CDF7500E05DBA /* TransactionInfo */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TransactionInfo; sourceTree = "<group>"; };
 		C799E83A2E4040BA0023F634 /* TransactionList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TransactionList; sourceTree = "<group>"; };
+		C7AD81A22EC13F3B00CEC55E /* ItemsForDay */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ItemsForDay; sourceTree = "<group>"; };
+		C7D362932E6633BA002BB84F /* Calendar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Calendar; sourceTree = "<group>"; };
+		C7D3629F2E6634C5002BB84F /* CalendarMonthSelector */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CalendarMonthSelector; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				C79C95EC2E652388003BFFF6 /* CalendarHeader.swift */,
-				C79C95ED2E652388003BFFF6 /* TransactionInfo.swift */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -187,16 +182,6 @@
 				C7FED0252E24B29600738F30 /* PFButton.swift */,
 			);
 			path = Button;
-			sourceTree = "<group>";
-		};
-		C7FED02A2E24B29600738F30 /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				C7FED0272E24B29600738F30 /* CalendarDay.swift */,
-				C7FED0282E24B29600738F30 /* CalendarMonth.swift */,
-				C7FED0292E24B29600738F30 /* CalendarWeek.swift */,
-			);
-			path = Calendar;
 			sourceTree = "<group>";
 		};
 		C7FED02D2E24B29600738F30 /* Common */ = {
@@ -257,9 +242,10 @@
 		C7FED0372E24B29600738F30 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C765540A2E6CDF7500E05DBA /* TransactionInfo */,
+				C7D3629F2E6634C5002BB84F /* CalendarMonthSelector */,
 				C7FED01F2E24B29600738F30 /* AddExpense */,
 				C7FED0262E24B29600738F30 /* Button */,
-				C7FED02A2E24B29600738F30 /* Calendar */,
 				C7FED0362E24B29600738F30 /* InputFields */,
 			);
 			path = Components;
@@ -294,18 +280,10 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		C7FED0432E24B29600738F30 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		C7FED0442E24B29600738F30 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				C7FED0422E24B29600738F30 /* View */,
-				C7FED0432E24B29600738F30 /* ViewModel */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -362,14 +340,15 @@
 			path = Month;
 			sourceTree = "<group>";
 		};
-		C7FED0532E24B29600738F30 /* Reports */ = {
+		C7FED0532E24B29600738F30 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				C7D362932E6633BA002BB84F /* Calendar */,
 				C7FED04D2E24B29600738F30 /* Category */,
 				C7FED0512E24B29600738F30 /* Month */,
 				C7FED0522E24B29600738F30 /* ReportsTabView.swift */,
 			);
-			path = Reports;
+			path = Tabs;
 			sourceTree = "<group>";
 		};
 		C7FED0542E24B29600738F30 /* Model */ = {
@@ -412,9 +391,10 @@
 		C7FED05A2E24B29600738F30 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				C7AD81A22EC13F3B00CEC55E /* ItemsForDay */,
 				C7FED0402E24B29600738F30 /* NewItem */,
 				C7FED0442E24B29600738F30 /* Profile */,
-				C7FED0532E24B29600738F30 /* Reports */,
+				C7FED0532E24B29600738F30 /* Tabs */,
 				C7FED0582E24B29600738F30 /* SignIn */,
 				C7FED0592E24B29600738F30 /* NotImplementedView.swift */,
 			);
@@ -460,7 +440,11 @@
 				C709C8622E35AD400094BC6D /* NewIncome */,
 				C709C8662E35AD860094BC6D /* NewTransaction */,
 				C74A87892E2DC39F005233BF /* DB */,
+				C765540A2E6CDF7500E05DBA /* TransactionInfo */,
 				C799E83A2E4040BA0023F634 /* TransactionList */,
+				C7AD81A22EC13F3B00CEC55E /* ItemsForDay */,
+				C7D362932E6633BA002BB84F /* Calendar */,
+				C7D3629F2E6634C5002BB84F /* CalendarMonthSelector */,
 			);
 			name = "Personal Finance";
 			productName = "Personal Finance";
@@ -520,17 +504,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7FED0652E24B29600738F30 /* TextInput.swift in Sources */,
-				C79C95EF2E652388003BFFF6 /* TransactionInfo.swift in Sources */,
 				C79C95F02E652388003BFFF6 /* CalendarHeader.swift in Sources */,
 				C7FED0662E24B29600738F30 /* AppState.swift in Sources */,
-				C7FED0672E24B29600738F30 /* CalendarDay.swift in Sources */,
 				C709C85F2E35A70C0094BC6D /* CategoryViewModel.swift in Sources */,
 				C7FED0682E24B29600738F30 /* FilledButtonStyle.swift in Sources */,
 				C78202C22E47F72A00F8F77B /* InputFieldValidation.swift in Sources */,
 				C7FED0692E24B29600738F30 /* InputFieldBox.swift in Sources */,
 				C7FED06A2E24B29600738F30 /* MonthsView.swift in Sources */,
-				C7FED06B2E24B29600738F30 /* CalendarWeek.swift in Sources */,
-				C7FED06C2E24B29600738F30 /* CalendarMonth.swift in Sources */,
 				C7FED06E2E24B29600738F30 /* SplashScreen.swift in Sources */,
 				C7FED06F2E24B29600738F30 /* CurrencyInput.swift in Sources */,
 				C7FED0702E24B29600738F30 /* NewItemView.swift in Sources */,

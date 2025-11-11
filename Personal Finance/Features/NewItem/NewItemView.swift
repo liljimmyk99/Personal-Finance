@@ -10,7 +10,7 @@ import SwiftUI
 struct NewItemView: View {
     @EnvironmentObject var appState: AppState
     var body: some View {
-        TabView{
+        TabView {
             EditTransactionView(
                 viewModel: EditTransactionViewModel(
                     customerID: appState.currentUser?.id

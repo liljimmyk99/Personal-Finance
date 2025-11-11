@@ -32,7 +32,7 @@ class AppState: ObservableObject {
             }
         }
     }
-    
+
     @Published var currentUser: User? = nil
     @Published var currentView: ViewType = .splashScreen
     @Published var isMainWindowInFocus: Bool = false

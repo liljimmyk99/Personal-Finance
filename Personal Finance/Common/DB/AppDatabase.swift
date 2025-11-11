@@ -11,13 +11,13 @@ import os.log
 // Credit to [GRDB Demo app](https://github.com/groue/GRDB.swift/tree/master/Documentation/DemoApps) as I followed their example set up with minor tweeks
 struct AppDatabase: Sendable {
     /// Access to the database.
-    internal let dbWriter: any DatabaseWriter
-    
+    let dbWriter: any DatabaseWriter
+
     /// Provides a read-only access to the database.
-    internal var reader: any GRDB.DatabaseReader {
+    var reader: any GRDB.DatabaseReader {
         dbWriter
     }
-    
+
     /// Creates a `AppDatabase`, and makes sure the database schema
     /// is ready.
     ///
@@ -25,15 +25,15 @@ struct AppDatabase: Sendable {
         self.dbWriter = dbWriter
         try migrator.migrate(dbWriter)
     }
-    
+
     /// The DatabaseMigrator that defines the database schema.
     private var migrator: DatabaseMigrator {
         var migrator = DatabaseMigrator()
-        
-#if DEBUG
-        migrator.eraseDatabaseOnSchemaChange = true
-#endif
-        
+
+        #if DEBUG
+            migrator.eraseDatabaseOnSchemaChange = true
+        #endif
+
         migrator.registerMigration("v1") { db in
             // Create a table
             try db.create(table: "user") { t in
@@ -44,7 +44,7 @@ struct AppDatabase: Sendable {
                 t.column("phoneNumber", .text).notNull()
                 t.column("passwordHash", .text).notNull()
             }
-            
+
             try db.create(table: "income") { t in
                 t.autoIncrementedPrimaryKey("id")
                 t.column("userID", .integer).references("user", onDelete: .cascade).notNull()
@@ -55,7 +55,7 @@ struct AppDatabase: Sendable {
                 t.column("net_amount", .numeric).notNull()
                 t.column("lastUpdated", .date).notNull()
             }
-            
+
             try db.create(table: "transaction") { t in
                 t.autoIncrementedPrimaryKey("id")
                 t.column("userID", .integer).references("user", onDelete: .cascade).notNull()
@@ -67,13 +67,13 @@ struct AppDatabase: Sendable {
                 t.column("lastUpdated", .date).notNull()
             }
         }
-        
+
         return migrator
     }
-    
+
     static func empty() -> AppDatabase {
-            let dbQueue = try! DatabaseQueue(configuration: AppDatabase.makeConfiguration())
-            return try! AppDatabase(dbQueue)
+        let dbQueue = try! DatabaseQueue(configuration: AppDatabase.makeConfiguration())
+        return try! AppDatabase(dbQueue)
     }
 }
 
@@ -82,54 +82,55 @@ struct AppDatabase: Sendable {
 extension AppDatabase {
     // Uncomment for enabling SQL logging
     private static let sqlLogger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "SQL")
-    
+
     /// Returns a database configuration suited for `AppDatabase`.
     ///
     /// - parameter config: A base configuration.
     static func makeConfiguration(_ config: Configuration = Configuration()) -> Configuration {
         var config = config
-        
+
         if ProcessInfo.processInfo.environment["SQL_TRACE"] != nil {
-             config.prepareDatabase { db in
-                 let dbName = db.description
-                 db.trace { event in
-                     sqlLogger.debug("\(dbName): \(event)")
-                 }
-             }
-         }
-         #if DEBUG
-         // Protect sensitive information by enabling verbose debugging in
-         config.publicStatementArguments = true
-         #endif
-        
+            config.prepareDatabase { db in
+                let dbName = db.description
+                db.trace { event in
+                    sqlLogger.debug("\(dbName): \(event)")
+                }
+            }
+        }
+        #if DEBUG
+            // Protect sensitive information by enabling verbose debugging in
+            config.publicStatementArguments = true
+        #endif
+
         return config
     }
 }
 
 extension AppDatabase {
-        static let shared = makeShared()
-        
-        private static func makeShared() -> AppDatabase {
-            do {
-                // Create the "Application Support/Database" directory if needed
-                let fileManager = FileManager.default
-                let appSupportURL = try fileManager.url(
-                    for: .applicationSupportDirectory, in: .userDomainMask,
-                    appropriateFor: nil, create: true)
-                let directoryURL = appSupportURL.appendingPathComponent("Database", isDirectory: true)
-                try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true)
-                
-                // Open or create the database
-                let databaseURL = directoryURL.appendingPathComponent("db.sqlite")
-                let config = AppDatabase.makeConfiguration()
-                let dbPool = try DatabasePool(path: databaseURL.path, configuration: config)
-                
-                // Create the AppDatabase
-                let appDatabase = try AppDatabase(dbPool)
-                
-                return appDatabase
-            } catch {
-                fatalError("Unresolved error with database setup: \(error)")
-            }
+    static let shared = makeShared()
+
+    private static func makeShared() -> AppDatabase {
+        do {
+            // Create the "Application Support/Database" directory if needed
+            let fileManager = FileManager.default
+            let appSupportURL = try fileManager.url(
+                for: .applicationSupportDirectory, in: .userDomainMask,
+                appropriateFor: nil, create: true
+            )
+            let directoryURL = appSupportURL.appendingPathComponent("Database", isDirectory: true)
+            try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true)
+
+            // Open or create the database
+            let databaseURL = directoryURL.appendingPathComponent("db.sqlite")
+            let config = AppDatabase.makeConfiguration()
+            let dbPool = try DatabasePool(path: databaseURL.path, configuration: config)
+
+            // Create the AppDatabase
+            let appDatabase = try AppDatabase(dbPool)
+
+            return appDatabase
+        } catch {
+            fatalError("Unresolved error with database setup: \(error)")
         }
+    }
 }

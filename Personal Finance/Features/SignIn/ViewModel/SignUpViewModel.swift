@@ -16,14 +16,14 @@ class SignUpViewModel: ObservableObject {
     @Published var confirmPassword: String = ""
     @Published var errorMessage: String?
     @Published var isSignUpDataValid: Bool = false
-    
+
     @Published private(set) var isFirstNameValid: Bool = false
     @Published private(set) var isLastNameValid: Bool = false
     @Published private(set) var isPhoneNumberValid: Bool = false
     @Published private(set) var isEmailValid: Bool = false
     @Published private(set) var isPasswordValid: Bool = false
     @Published private(set) var isConfirmPasswordValid: Bool = false
-    
+
     init() {
         Publishers.CombineLatest3(
             Publishers.CombineLatest3($isFirstNameValid, $isLastNameValid, $isPhoneNumberValid),
@@ -40,8 +40,8 @@ class SignUpViewModel: ObservableObject {
         }
         .assign(to: &$isSignUpDataValid)
     }
-    
-    func firstNameValidation(text: String, isEditting: Bool) -> InputFieldValidation {
+
+    func firstNameValidation(text: String, isEditting _: Bool) -> InputFieldValidation {
         if text.rangeOfCharacter(from: .decimalDigits) != nil {
             isFirstNameValid = false
             return .failure(error: "First name should not contain numbers")
@@ -50,8 +50,8 @@ class SignUpViewModel: ObservableObject {
             return .success
         }
     }
-    
-    func lastNameValidation(text: String, isEditting: Bool) -> InputFieldValidation {
+
+    func lastNameValidation(text: String, isEditting _: Bool) -> InputFieldValidation {
         if text.rangeOfCharacter(from: .decimalDigits) != nil {
             isLastNameValid = false
             return .failure(error: "Last name should not contain numbers")
@@ -60,8 +60,8 @@ class SignUpViewModel: ObservableObject {
             return .success
         }
     }
-    
-    func phoneNumberValidation(text: String, isEditting: Bool) -> InputFieldValidation {
+
+    func phoneNumberValidation(text: String, isEditting _: Bool) -> InputFieldValidation {
         if text.rangeOfCharacter(from: .letters) != nil {
             isPhoneNumberValid = false
             return .failure(error: "Phone Numbers should not contain letters")
@@ -76,43 +76,42 @@ class SignUpViewModel: ObservableObject {
             return .success
         }
     }
-    
-    func emailValidation(text: String, isEditting: Bool) -> InputFieldValidation {
+
+    func emailValidation(text: String, isEditting _: Bool) -> InputFieldValidation {
         let pattern = #"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$"#
 
-        if (text.range(of: pattern, options: [.regularExpression, .caseInsensitive]) != nil) {
+        if text.range(of: pattern, options: [.regularExpression, .caseInsensitive]) != nil {
             isEmailValid = true
             return .success
         } else {
             isEmailValid = false
             return .failure(error: "Ensure email follows correct format: example@example.com")
         }
-
     }
-    
-    func passwordValidation(text: String, isEditting: Bool) -> InputFieldValidation {
-        let passwordLengthRequirement: Int = 8
-        
+
+    func passwordValidation(text: String, isEditting _: Bool) -> InputFieldValidation {
+        let passwordLengthRequirement = 8
+
         if text.count <= passwordLengthRequirement {
             isPasswordValid = false
             return .failure(error: "Password must be at least 8 characters long")
         }
-        
-        if text.contains(where: {$0.isPunctuation}) == false {
+
+        if text.contains(where: { $0.isPunctuation }) == false {
             isPasswordValid = false
             return .failure(error: "Password must contain at least one punctuation mark")
         }
-        
+
         isPasswordValid = true
         return .success
     }
-    
-    func confirmPasswordValidation(text: String, isEditting: Bool) -> InputFieldValidation {
+
+    func confirmPasswordValidation(text: String, isEditting _: Bool) -> InputFieldValidation {
 //        if isEditting {
 //            return .success
 //        }
-        
-        if text != self.password {
+
+        if text != password {
             isConfirmPasswordValid = false
             return .failure(error: "Passwords do not match")
         } else {

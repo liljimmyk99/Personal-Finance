@@ -8,7 +8,7 @@ import SwiftUI
 
 struct BasicButton: View {
     let text: String
-    
+
     let isDisabled: Bool
 
     let onTap: () -> Void

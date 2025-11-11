@@ -16,12 +16,42 @@ class EditTransactionViewModel: ObservableObject {
     private var transactionID: Int64?
     private var customerID: Int64
     private var database: AppDatabase = .shared
-    
+
     init(customerID: Int64?) {
-        self.store = ""
-        self.date = Date()
-        self.category = .other
-        self.amount = "0.00"
+        store = ""
+        date = Date()
+        category = .other
+        amount = "0.00"
+        self.customerID = customerID ?? Int64()
+
+        Publishers.CombineLatest($store, $amount)
+            .map { store, amount in
+                if store == "" || amount == "$0.00" {
+                    return false
+                } else {
+                    return true
+                }
+            }
+            .assign(to: &$isTransactionValid)
+    }
+
+    init(transaction: Transaction?, customerID: Int64?) {
+        guard let transaction else {
+            store = ""
+            date = Date()
+            category = .other
+            amount = "0.00"
+            transactionID = Int64()
+            self.customerID = Int64()
+
+            return
+        }
+
+        store = transaction.store
+        date = transaction.date
+        category = transaction.category
+        amount = String(transaction.amount)
+        transactionID = transaction.id
         self.customerID = customerID ?? Int64()
         
         Publishers.CombineLatest($store, $amount)
@@ -33,30 +63,14 @@ class EditTransactionViewModel: ObservableObject {
                 }
             }
             .assign(to: &$isTransactionValid)
+
     }
-    
-    init(transaction: Transaction?, customerID: Int64?) {
-        guard let transaction else {
-            self.store = ""
-            self.date = Date()
-            self.category = .other
-            self.amount = "0.00"
-            self.transactionID =  Int64()
-            self.customerID = Int64()
-            
-            return
-        }
-        
-        self.store = transaction.store
-        self.date = transaction.date
-        self.category = transaction.category
-        self.amount = String(transaction.amount)
-        self.transactionID = transaction.id
-        self.customerID = customerID ?? Int64()
-    }
-    
+
     func createTransaction() throws -> Transaction {
-        let formattedAmount = Double(amount) ?? 0.0
+        var amountCopy = amount
+        amountCopy.remove(at: amountCopy.startIndex)
+        
+        let formattedAmount = Double(amountCopy) ?? 0.0
         var transaction = Transaction(
             id: transactionID,
             userID: customerID,
@@ -66,7 +80,7 @@ class EditTransactionViewModel: ObservableObject {
             category: category,
             lastUpdated: Date()
         )
-        
+
         try database.saveTransaction(&transaction)
         return transaction
     }

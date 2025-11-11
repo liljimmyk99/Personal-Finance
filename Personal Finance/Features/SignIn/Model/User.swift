@@ -37,6 +37,7 @@ class User: Codable, Identifiable {
 }
 
 // MARK: - Database
+
 extension User: FetchableRecord, MutablePersistableRecord {
     // Define database columns from CodingKeys
     enum Columns {
